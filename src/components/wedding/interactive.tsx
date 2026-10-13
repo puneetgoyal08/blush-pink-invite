@@ -14,7 +14,7 @@ export function Rsvp() {
   const send = useServerFn(submitRsvp);
   const [attending, setAttending] = useState<boolean | null>(null);
   const [events, setEvents] = useState<string[]>([]);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name"|"contact"|"attending"|"events", string>>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [result, setResult] = useState<{ attending: boolean; updated: boolean } | null>(null);
   const [serverError, setServerError] = useState("");
@@ -26,7 +26,7 @@ export function Rsvp() {
     const name = String(fd.get("name") || "").trim();
     const contact = String(fd.get("contact") || "").trim();
     const guests = Number(fd.get("guests") || 1);
-    const e: Record<string, string> = {};
+    const e: Partial<Record<"name"|"contact"|"attending"|"events", string>> = {};
     if (name.length < 2) e.name = "Please enter your full name.";
     if (!/^\S+@\S+\.\S+$/.test(contact) && !/^\+?[\d\s-]{8,}$/.test(contact)) e.contact = "Enter a valid phone number or email.";
     if (attending === null) e.attending = "Please let us know if you can make it.";
@@ -151,10 +151,10 @@ export function Gallery() {
       </div>
       {idx !== null && (
         <div className="fixed inset-0 z-50 bg-forest/95 flex items-center justify-center animate-in fade-in" role="dialog" aria-modal="true" aria-label="Photo viewer"
-          onTouchStart={(e) => setTx(e.touches[0].clientX)} onTouchEnd={(e) => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 50) go(d < 0 ? 1 : -1); }}>
+          onTouchStart={(e) => setTx(e.touches[0]?.clientX ?? 0)} onTouchEnd={(e) => { const d = (e.changedTouches[0]?.clientX ?? tx) - tx; if (Math.abs(d) > 50) go(d < 0 ? 1 : -1); }}>
           <button onClick={() => setIdx(null)} className="absolute top-4 right-4 h-12 w-12 text-on-image flex items-center justify-center" aria-label="Close"><X /></button>
           <button onClick={() => go(-1)} className="absolute left-2 h-12 w-12 text-on-image hidden sm:flex items-center justify-center" aria-label="Previous"><ChevronLeft /></button>
-          <img key={idx} src={imgs[idx].src} alt={imgs[idx].alt} className="max-h-[85vh] max-w-[92vw] object-contain animate-in fade-in zoom-in-95 duration-300" />
+          <img key={idx} src={imgs[idx]?.src} alt={imgs[idx]?.alt ?? ""} className="max-h-[85vh] max-w-[92vw] object-contain animate-in fade-in zoom-in-95 duration-300" />
           <button onClick={() => go(1)} className="absolute right-2 h-12 w-12 text-on-image hidden sm:flex items-center justify-center" aria-label="Next"><ChevronRight /></button>
           <p className="absolute bottom-5 text-on-image/80 text-xs tracking-[0.2em]">{idx + 1} / {imgs.length}</p>
         </div>
