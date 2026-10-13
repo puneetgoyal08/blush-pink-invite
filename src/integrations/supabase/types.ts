@@ -14,16 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      rsvps: {
+        Row: {
+          attending: boolean
+          contact: string
+          contact_key: string
+          created_at: string
+          dietary: string | null
+          events: string[]
+          guests: number
+          id: string
+          ip_hash: string | null
+          message: string | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          attending: boolean
+          contact: string
+          contact_key: string
+          created_at?: string
+          dietary?: string | null
+          events?: string[]
+          guests?: number
+          id?: string
+          ip_hash?: string | null
+          message?: string | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          attending?: boolean
+          contact?: string
+          contact_key?: string
+          created_at?: string
+          dietary?: string | null
+          events?: string[]
+          guests?: number
+          id?: string
+          ip_hash?: string | null
+          message?: string | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wishes: {
+        Row: {
+          approved: boolean
+          created_at: string
+          id: string
+          ip_hash: string | null
+          message: string
+          name: string
+        }
+        Insert: {
+          approved?: boolean
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          message: string
+          name: string
+        }
+        Update: {
+          approved?: boolean
+          created_at?: string
+          id?: string
+          ip_hash?: string | null
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_approved_wishes: {
+        Args: never
+        Returns: {
+          created_at: string
+          id: string
+          message: string
+          name: string
+        }[]
+      }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +254,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+    },
   },
 } as const
