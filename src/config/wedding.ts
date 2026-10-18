@@ -16,10 +16,11 @@ export type WeddingEvent = {
   name: string;
   description: string;
   start: string; // ISO with timezone offset
-  end: string;
+  end: string; // same as start when no end time is set; shown as "onwards"
   timeIsPlaceholder: boolean;
   venue: string;
   address: string;
+  hideDirections?: boolean; // e.g. a private home with no map pin yet
   dressCode?: string;
   image?: string;
 };
@@ -28,9 +29,9 @@ export const wedding = {
   bride: "Nidhi",
   groom: "Puneet",
   invitation: "Together with our families, we invite you to celebrate our wedding.",
-  date: "2026-12-05T00:00:00+05:30",
+  date: "2026-12-05T20:00:00+05:30",
   dateIsPlaceholder: false,
-  timeIsPlaceholder: true,
+  timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
   location: "Rampura Phul",
   rsvpDeadline: TBC("Date to be confirmed"),
@@ -58,16 +59,17 @@ export const wedding = {
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
-      venue: TBC("Exact venue"),
+      venue: "At home",
       address: "Bathinda",
+      hideDirections: true,
     },
     {
       id: "sangeet",
       name: "Sangeet",
       description: TBC("Event details to be confirmed."),
-      start: "2026-12-04T00:00:00+05:30",
-      end: "2026-12-04T00:00:00+05:30",
-      timeIsPlaceholder: true,
+      start: "2026-12-04T19:00:00+05:30",
+      end: "2026-12-04T19:00:00+05:30",
+      timeIsPlaceholder: false,
       venue: "Sepal",
       address: "Bathinda",
       image: g4,
@@ -76,9 +78,9 @@ export const wedding = {
       id: "wedding",
       name: "Wedding",
       description: TBC("Event details to be confirmed."),
-      start: "2026-12-05T00:00:00+05:30",
-      end: "2026-12-05T00:00:00+05:30",
-      timeIsPlaceholder: true,
+      start: "2026-12-05T20:00:00+05:30",
+      end: "2026-12-05T20:00:00+05:30",
+      timeIsPlaceholder: false,
       venue: "Sky Heights",
       address: "Rampura Phul",
       image: g3,

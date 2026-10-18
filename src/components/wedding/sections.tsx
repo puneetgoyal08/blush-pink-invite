@@ -111,11 +111,15 @@ export function Story() {
   );
 }
 
+// Calendar entries need a duration; assume three hours when only a start time is set.
+const calEnd = (e: WeddingEvent) =>
+  e.end === e.start ? new Date(new Date(e.start).getTime() + 3 * 3600000).toISOString() : e.end;
+
 function icsFor(e: WeddingEvent) {
   const f = (s: string) => new Date(s).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   const body = [
     "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//NP Wedding//EN", "BEGIN:VEVENT",
-    `UID:${e.id}@np-wedding`, `DTSTAMP:${f(new Date().toISOString())}`, `DTSTART:${f(e.start)}`, `DTEND:${f(e.end)}`,
+    `UID:${e.id}@np-wedding`, `DTSTAMP:${f(new Date().toISOString())}`, `DTSTART:${f(e.start)}`, `DTEND:${f(calEnd(e))}`,
     `SUMMARY:${e.name} — ${coupleNames}`, `LOCATION:${clean(e.venue)}, ${clean(e.address)}`, `DESCRIPTION:${e.description}`,
     "END:VEVENT", "END:VCALENDAR",
   ].join("\r\n");
@@ -126,7 +130,7 @@ function icsFor(e: WeddingEvent) {
 
 function gcal(e: WeddingEvent) {
   const f = (s: string) => new Date(s).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  const p = new URLSearchParams({ action: "TEMPLATE", text: `${e.name} — ${coupleNames}`, dates: `${f(e.start)}/${f(e.end)}`, details: e.description, location: `${clean(e.venue)}, ${clean(e.address)}` });
+  const p = new URLSearchParams({ action: "TEMPLATE", text: `${e.name} — ${coupleNames}`, dates: `${f(e.start)}/${f(calEnd(e))}`, details: e.description, location: `${clean(e.venue)}, ${clean(e.address)}` });
   return `https://calendar.google.com/calendar/render?${p}`;
 }
 
@@ -156,13 +160,13 @@ export function Celebrations() {
                   <h3 className="text-5xl mt-2">{e.name}</h3>
                   {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-lg">{e.description}</p>}
                   <dl className="mt-6 space-y-3 text-sm">
-                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })} – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</dd></div>
+                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</dd></div>
                     <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
                     {e.dressCode && <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Attire</dt><dd>{e.dressCode}</dd></div>}
                   </dl>
                   {(!isTBC(e.venue) && !isTBC(e.address)) || !e.timeIsPlaceholder ? (
                     <div className="flex flex-wrap gap-2 mt-7">
-                      {!isTBC(e.venue) && !isTBC(e.address) && <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Directions</a>}
+                      {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Directions</a>}
                       {!e.timeIsPlaceholder && <a href={gcal(e)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><CalendarPlus className="h-4 w-4" /> Google Calendar</a>}
                       {!e.timeIsPlaceholder && <button onClick={() => icsFor(e)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-border text-sm hover:bg-card">Apple / Outlook</button>}
                     </div>
