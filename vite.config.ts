@@ -6,18 +6,19 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-// GitHub Pages build (set by .github/workflows/deploy-pages.yml): a static site served
-// from https://<user>.github.io/ivory-sage-invites/. Lovable builds are unaffected.
-const pagesBase = process.env["GITHUB_PAGES_BASE"];
+// Static builds: GitHub Pages (set by .github/workflows/deploy-pages.yml) serves the site
+// from https://<user>.github.io/ivory-sage-invites/, and Vercel (which sets VERCEL=1)
+// serves it from the domain root. Lovable builds are unaffected.
+const pagesBase = process.env["GITHUB_PAGES_BASE"] ?? (process.env["VERCEL"] ? "" : undefined);
 
 export default defineConfig(
-  pagesBase
+  pagesBase !== undefined
     ? {
         vite: { base: `${pagesBase}/` },
         nitro: false,
         tanstackStart: {
           server: { entry: "server" },
-          router: { basepath: pagesBase },
+          router: { basepath: pagesBase || "/" },
           prerender: { enabled: true, crawlLinks: true },
         },
       }
