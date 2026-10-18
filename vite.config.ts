@@ -6,10 +6,26 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
-});
+// GitHub Pages build (set by .github/workflows/deploy-pages.yml): a static site served
+// from https://<user>.github.io/ivory-sage-invites/. Lovable builds are unaffected.
+const pagesBase = process.env["GITHUB_PAGES_BASE"];
+
+export default defineConfig(
+  pagesBase
+    ? {
+        vite: { base: `${pagesBase}/` },
+        nitro: false,
+        tanstackStart: {
+          server: { entry: "server" },
+          router: { basepath: pagesBase },
+          prerender: { enabled: true, crawlLinks: true },
+        },
+      }
+    : {
+        tanstackStart: {
+          // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+          // nitro/vite builds from this
+          server: { entry: "server" },
+        },
+      },
+);

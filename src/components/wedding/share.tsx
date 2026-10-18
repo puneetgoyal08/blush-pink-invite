@@ -13,7 +13,7 @@ export function ShareButton({ variant = "solid", label = "Share Invitation" }: {
   const [open, setOpen] = useState(false);
 
   async function onClick() {
-    const url = window.location.origin;
+    const url = new URL(import.meta.env.BASE_URL, window.location.origin).href;
     if (navigator.share) {
       try { await navigator.share({ title: `${coupleNames} — Wedding Invitation`, text: shareText(), url }); return; }
       catch (e) { if ((e as Error).name === "AbortError") return; }
@@ -40,7 +40,7 @@ export function ShareButton({ variant = "solid", label = "Share Invitation" }: {
 }
 
 function ShareSheet({ onClose }: { onClose: () => void }) {
-  const url = window.location.origin;
+  const url = new URL(import.meta.env.BASE_URL, window.location.origin).href;
   const wa = `https://wa.me/?text=${encodeURIComponent(shareText() + " " + url)}`;
   async function copy() {
     try { await navigator.clipboard.writeText(url); toast.success("Link copied — paste it anywhere to share."); onClose(); }
