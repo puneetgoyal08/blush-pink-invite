@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Nav,
   Hero,
-  Story,
   Celebrations,
   CountdownSection,
   Travel,
@@ -43,7 +42,6 @@ function Index() {
       <div aria-hidden={!invitationOpened} inert={!invitationOpened}>
         <Nav />
         <Hero />
-        <Story />
         <Celebrations />
         <CountdownSection />
         <Travel />

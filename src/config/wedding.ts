@@ -16,10 +16,11 @@ export type WeddingEvent = {
   name: string;
   description: string;
   start: string; // ISO with timezone offset
-  end: string;
+  end: string; // same as start when no end time is set; shown as "onwards"
   timeIsPlaceholder: boolean;
   venue: string;
   address: string;
+  hideDirections?: boolean; // e.g. a private home with no map pin yet
   dressCode?: string;
   image?: string;
 };
@@ -28,27 +29,14 @@ export const wedding = {
   bride: "Nidhi",
   groom: "Puneet",
   invitation: "Together with our families, we invite you to celebrate our wedding.",
-  date: "2026-12-05T00:00:00+05:30",
+  date: "2026-12-05T20:00:00+05:30",
   dateIsPlaceholder: false,
-  timeIsPlaceholder: true,
+  timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
   location: "Rampura Phul",
   rsvpDeadline: TBC("Date to be confirmed"),
   heroImage: hero,
   musicUrl: "", // add an mp3 URL to enable the music toggle
-
-  story: {
-    intro: TBC(
-      "A few lines about how Nidhi and Puneet met, and what makes them, them. Replace this sample text with your own words.",
-    ),
-    milestones: [
-      { year: TBC("Year"), title: "The first hello", text: TBC("Where and how you met.") },
-      { year: TBC("Year"), title: "Falling for each other", text: TBC("A favourite memory together.") },
-      { year: TBC("Year"), title: "The proposal", text: TBC("How the question was popped.") },
-      { year: "2026", title: "Forever begins", text: "And now, we celebrate — with you." },
-    ],
-    photos: [g2, g1, g3],
-  },
 
   events: [
     {
@@ -58,16 +46,17 @@ export const wedding = {
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
-      venue: TBC("Exact venue"),
+      venue: "At home",
       address: "Bathinda",
+      hideDirections: true,
     },
     {
       id: "sangeet",
       name: "Sangeet",
       description: TBC("Event details to be confirmed."),
-      start: "2026-12-04T00:00:00+05:30",
-      end: "2026-12-04T00:00:00+05:30",
-      timeIsPlaceholder: true,
+      start: "2026-12-04T19:00:00+05:30",
+      end: "2026-12-04T19:00:00+05:30",
+      timeIsPlaceholder: false,
       venue: "Sepal",
       address: "Bathinda",
       image: g4,
@@ -76,9 +65,9 @@ export const wedding = {
       id: "wedding",
       name: "Wedding",
       description: TBC("Event details to be confirmed."),
-      start: "2026-12-05T00:00:00+05:30",
-      end: "2026-12-05T00:00:00+05:30",
-      timeIsPlaceholder: true,
+      start: "2026-12-05T20:00:00+05:30",
+      end: "2026-12-05T20:00:00+05:30",
+      timeIsPlaceholder: false,
       venue: "Sky Heights",
       address: "Rampura Phul",
       image: g3,
@@ -89,15 +78,7 @@ export const wedding = {
     venue: { name: "Sky Heights", address: "Rampura Phul" },
     airport: TBC("Nearest airport — distance & travel time"),
     railway: TBC("Nearest railway station — distance & travel time"),
-    hotels: [
-      { name: TBC("Hotel one"), note: TBC("Distance, booking code") },
-      { name: TBC("Hotel two"), note: TBC("Distance, booking code") },
-    ],
     transport: TBC("Shuttles, cabs and local transport details."),
-    contacts: [
-      { name: TBC("Contact person"), role: "Travel & stay", phone: TBC("+91 00000 00000") },
-      { name: TBC("Contact person"), role: "Event day", phone: TBC("+91 00000 00000") },
-    ],
   },
 
   gallery: [
@@ -112,10 +93,8 @@ export const wedding = {
     { q: "What should I wear?", a: TBC("Dress code notes for each event.") },
     { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },
     { q: "Is there parking or transport?", a: TBC("Parking and transport details.") },
-    { q: "Where should I stay?", a: TBC("See Venue & Travel — details to follow.") },
     { q: "Can I bring children or a plus-one?", a: TBC("Your guidance on children and plus-ones.") },
     { q: "Do you have a gift preference?", a: TBC("Your gift preferences.") },
-    { q: "Whom do I contact for help?", a: TBC("Name and number for questions.") },
   ],
 };
 
