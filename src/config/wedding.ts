@@ -75,10 +75,24 @@ export const wedding = {
   ] as WeddingEvent[],
 
   travel: {
-    venue: { name: "Sky Heights", address: "Rampura Phul" },
-    airport: TBC("Nearest airport — distance & travel time"),
-    railway: TBC("Nearest railway station — distance & travel time"),
-    transport: TBC("Shuttles, cabs and local transport details."),
+    venue: {
+      name: "Bathinda, Punjab",
+      address: "The Haldi and Sangeet are in Bathinda. The wedding is at Sky Heights, Rampura Phul, about 30 km away.",
+    },
+    // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
+    railway: {
+      intro: "Bathinda Junction (BTI) is about 5 hours from Delhi, with several direct trains every day:",
+      trains: [
+        { no: "20409", name: "Delhi Cantt – Bathinda SF Express", note: "morning, about 5 hrs" },
+        { no: "12481", name: "Delhi – Sri Ganganagar Intercity", note: "afternoon, about 5 hrs" },
+        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "overnight, about 6 hrs" },
+        { no: "14731", name: "Kisan Express (Delhi – Bathinda)", note: "about 7 hrs" },
+      ],
+      outro: "Please check current timings on IRCTC or NTES before booking.",
+    },
+    airport: "Bathinda Airport (BUP) has a few Alliance Air flights a week from Delhi, about 1 hr 10 min. Chandigarh (IXC) is the nearest big airport, roughly 4 hours away by road.",
+    road: "Bathinda is about 320 km from Delhi, roughly 5 to 6 hours by car. Buses run from Delhi through the day and take about 6 to 7 hours.",
+    transport: "Rampura Phul is about 40 minutes from Bathinda by car, along the Barnala road. Cabs and autos are easy to find in town.",
   },
 
   gallery: [
