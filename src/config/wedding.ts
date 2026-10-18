@@ -17,6 +17,7 @@ export type WeddingEvent = {
   description: string;
   start: string; // ISO with timezone offset
   end: string;
+  timeIsPlaceholder: boolean;
   venue: string;
   address: string;
   dressCode?: string;
@@ -27,12 +28,12 @@ export const wedding = {
   bride: "Nidhi",
   groom: "Puneet",
   invitation: "Together with our families, we invite you to celebrate our wedding.",
-  // Placeholder date — replace with the real one.
-  date: "2027-02-14T18:00:00+05:30",
-  dateIsPlaceholder: true,
+  date: "2026-12-05T00:00:00+05:30",
+  dateIsPlaceholder: false,
+  timeIsPlaceholder: true,
   timezone: "Asia/Kolkata",
-  location: TBC("City, India"),
-  rsvpDeadline: TBC("15 January 2027"),
+  location: "Rampura Phul",
+  rsvpDeadline: TBC("Date to be confirmed"),
   heroImage: hero,
   musicUrl: "", // add an mp3 URL to enable the music toggle
 
@@ -44,58 +45,48 @@ export const wedding = {
       { year: TBC("Year"), title: "The first hello", text: TBC("Where and how you met.") },
       { year: TBC("Year"), title: "Falling for each other", text: TBC("A favourite memory together.") },
       { year: TBC("Year"), title: "The proposal", text: TBC("How the question was popped.") },
-      { year: "2027", title: "Forever begins", text: "And now, we celebrate — with you." },
+      { year: "2026", title: "Forever begins", text: "And now, we celebrate — with you." },
     ],
     photos: [g2, g1, g3],
   },
 
   events: [
     {
-      id: "mehendi",
-      name: "Mehendi",
-      description: "An afternoon of henna, music and marigolds.",
-      start: "2027-02-12T15:00:00+05:30",
-      end: "2027-02-12T19:00:00+05:30",
-      venue: TBC("Venue name"),
-      address: TBC("Full venue address"),
-      dressCode: "Shades of green & yellow",
+      id: "haldi",
+      name: "Haldi",
+      description: TBC("Event details to be confirmed."),
+      start: "2026-12-03T00:00:00+05:30",
+      end: "2026-12-03T00:00:00+05:30",
+      timeIsPlaceholder: true,
+      venue: TBC("Exact venue"),
+      address: "Bathinda",
     },
     {
       id: "sangeet",
       name: "Sangeet",
-      description: "An evening of dance, performances and celebration.",
-      start: "2027-02-13T19:00:00+05:30",
-      end: "2027-02-13T23:30:00+05:30",
-      venue: TBC("Venue name"),
-      address: TBC("Full venue address"),
-      dressCode: "Indo-western glam",
+      description: TBC("Event details to be confirmed."),
+      start: "2026-12-04T00:00:00+05:30",
+      end: "2026-12-04T00:00:00+05:30",
+      timeIsPlaceholder: true,
+      venue: "Sepal",
+      address: "Bathinda",
       image: g4,
     },
     {
       id: "wedding",
-      name: "Wedding Ceremony",
-      description: "The pheras, under the stars, surrounded by those we love.",
-      start: "2027-02-14T18:00:00+05:30",
-      end: "2027-02-14T22:00:00+05:30",
-      venue: TBC("Venue name"),
-      address: TBC("Full venue address"),
-      dressCode: "Traditional Indian",
+      name: "Wedding",
+      description: TBC("Event details to be confirmed."),
+      start: "2026-12-05T00:00:00+05:30",
+      end: "2026-12-05T00:00:00+05:30",
+      timeIsPlaceholder: true,
+      venue: "Sky Heights",
+      address: "Rampura Phul",
       image: g3,
-    },
-    {
-      id: "reception",
-      name: "Reception",
-      description: "Dinner, toasts and dancing to close the celebrations.",
-      start: "2027-02-15T19:30:00+05:30",
-      end: "2027-02-15T23:30:00+05:30",
-      venue: TBC("Venue name"),
-      address: TBC("Full venue address"),
-      dressCode: "Black tie / formal Indian",
     },
   ] as WeddingEvent[],
 
   travel: {
-    venue: { name: TBC("Main venue name"), address: TBC("Full address") },
+    venue: { name: "Sky Heights", address: "Rampura Phul" },
     airport: TBC("Nearest airport — distance & travel time"),
     railway: TBC("Nearest railway station — distance & travel time"),
     hotels: [

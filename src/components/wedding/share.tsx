@@ -5,7 +5,8 @@ import { coupleNames, formatDate, wedding } from "@/config/wedding";
 
 function shareText() {
   const date = formatDate(wedding.date, { day: "numeric", month: "long", year: "numeric" });
-  return `You're invited to celebrate the wedding of ${coupleNames} — ${date}. View the invitation & RSVP:`;
+  const invitationDate = wedding.dateIsPlaceholder ? "the date to be announced" : date;
+  return `You're invited to celebrate the wedding of ${coupleNames} — ${invitationDate}. View the invitation & RSVP:`;
 }
 
 export function ShareButton({ variant = "solid", label = "Share Invitation" }: { variant?: "solid" | "outline" | "float"; label?: string }) {

@@ -8,6 +8,7 @@ import { ShareButton } from "./share";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const fullDate = formatDate(wedding.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+const displayedDate = wedding.dateIsPlaceholder ? "Date to be announced" : fullDate;
 
 const NAV = [
   ["story", "Story"], ["celebrations", "Events"], ["travel", "Travel"], ["rsvp", "RSVP"], ["gallery", "Gallery"], ["faq", "FAQ"],
@@ -21,11 +22,14 @@ export function Nav() {
     return () => window.removeEventListener("scroll", on);
   }, []);
   return (
-    <nav className={`fixed top-0 inset-x-0 z-30 transition-all duration-500 ${solid ? "bg-background/90 backdrop-blur border-b border-border" : "opacity-0 pointer-events-none -translate-y-full"}`} aria-label="Sections">
-      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-4">
-        <a href="#top" className="shrink-0" aria-label="Back to top"><Monogram className="h-9 w-9" /></a>
-        <div className="flex gap-5 overflow-x-auto text-xs uppercase tracking-[0.2em] text-muted-foreground no-scrollbar">
-          {NAV.map(([id, label]) => <a key={id} href={`#${id}`} className="py-3 whitespace-nowrap hover:text-forest">{label}</a>)}
+    <nav
+      className={`fixed top-0 inset-x-0 z-30 transition-all duration-500 ${solid ? "bg-background/95 backdrop-blur border-b border-border text-forest" : "bg-forest/65 backdrop-blur-md text-on-image"}`}
+      aria-label="Sections"
+    >
+      <div className="max-w-6xl mx-auto px-4 h-14 flex items-center gap-3 md:gap-4">
+        <a href="#top" className="shrink-0" aria-label="Back to top"><Monogram className="h-9 w-9" light={!solid} /></a>
+        <div className={`ml-auto flex min-w-0 gap-4 md:gap-5 overflow-x-auto text-[0.62rem] sm:text-xs uppercase tracking-[0.16em] md:tracking-[0.2em] no-scrollbar ${solid ? "text-muted-foreground" : "text-on-image"}`}>
+          {NAV.map(([id, label]) => <a key={id} href={`#${id}`} className="py-3 whitespace-nowrap hover:opacity-70">{label}</a>)}
         </div>
       </div>
     </nav>
@@ -52,15 +56,15 @@ export function Hero() {
       )}
       <div className="relative z-10 text-center px-6 pb-16 pt-24 max-w-2xl animate-in fade-in duration-1000">
         <Monogram light className="h-20 w-20 mx-auto mb-6" />
-        <p className="eyebrow mb-5">The wedding of</p>
+        <p className="eyebrow mb-5 text-on-image">The wedding of</p>
         <h1 className="text-on-image text-6xl sm:text-7xl md:text-8xl leading-[0.95]">
           {wedding.bride} <span className="italic text-gold">&amp;</span><br className="sm:hidden" /> {wedding.groom}
         </h1>
-        <p className="text-on-image/90 mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
+        <p className="text-on-image opacity-90 mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
         <div className="hairline w-32 mx-auto my-6" />
-        <p className="text-on-image text-sm tracking-[0.2em] uppercase">{fullDate}</p>
-        <p className="text-on-image/80 text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
-        <div className="mt-8"><Countdown compact light /></div>
+        <p className="text-on-image text-sm tracking-[0.2em] uppercase">{displayedDate}</p>
+        <p className="text-on-image opacity-80 text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
+        {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
         <a href="#story" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide hover:opacity-90 transition">
           Explore Our Wedding <ChevronDown className="h-4 w-4" />
         </a>
@@ -150,17 +154,19 @@ export function Celebrations() {
                 <div>
                   <p className="eyebrow">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</p>
                   <h3 className="text-5xl mt-2">{e.name}</h3>
-                  <p className="text-muted-foreground mt-3 font-serif italic text-lg">{e.description}</p>
+                  {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-lg">{e.description}</p>}
                   <dl className="mt-6 space-y-3 text-sm">
-                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Time</dt><dd>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })} – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</dd></div>
+                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })} – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</dd></div>
                     <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
                     {e.dressCode && <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Attire</dt><dd>{e.dressCode}</dd></div>}
                   </dl>
-                  <div className="flex flex-wrap gap-2 mt-7">
-                    <a href={maps(`${clean(e.venue)} ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Directions</a>
-                    <a href={gcal(e)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><CalendarPlus className="h-4 w-4" /> Google Calendar</a>
-                    <button onClick={() => icsFor(e)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-border text-sm hover:bg-card">Apple / Outlook</button>
-                  </div>
+                  {(!isTBC(e.venue) && !isTBC(e.address)) || !e.timeIsPlaceholder ? (
+                    <div className="flex flex-wrap gap-2 mt-7">
+                      {!isTBC(e.venue) && !isTBC(e.address) && <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Directions</a>}
+                      {!e.timeIsPlaceholder && <a href={gcal(e)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><CalendarPlus className="h-4 w-4" /> Google Calendar</a>}
+                      {!e.timeIsPlaceholder && <button onClick={() => icsFor(e)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-border text-sm hover:bg-card">Apple / Outlook</button>}
+                    </div>
+                  ) : null}
                 </div>
               </article>
             </Reveal>
@@ -176,10 +182,9 @@ export function CountdownSection() {
     <section className="py-24 md:py-32 px-6 text-center relative overflow-hidden">
       <Botanical className="absolute -left-20 bottom-0 w-56 opacity-40 sway" />
       <Reveal>
-        <p className="eyebrow mb-4">Counting down to</p>
-        <p className="font-serif italic text-3xl md:text-4xl mb-12">{fullDate}</p>
+        <p className="eyebrow mb-4">{wedding.dateIsPlaceholder ? "The date" : wedding.timeIsPlaceholder ? "Save the date" : "Counting down to"}</p>
+        <p className="font-serif italic text-3xl md:text-4xl mb-12">{displayedDate}</p>
         <Countdown />
-        {wedding.dateIsPlaceholder && <p className="mt-8"><span className="placeholder-tag">date to be confirmed</span></p>}
       </Reveal>
     </section>
   );
@@ -263,7 +268,7 @@ export function Closing() {
         <p className="font-serif italic text-3xl md:text-5xl text-balance">We can't wait to celebrate with you.</p>
         <p className="font-serif text-5xl md:text-7xl mt-8">{coupleNames}</p>
         <div className="hairline w-24 mx-auto my-6" />
-        <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">{fullDate}</p>
+        <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">{displayedDate}</p>
         <div className="mt-10"><ShareButton /></div>
       </Reveal>
     </footer>

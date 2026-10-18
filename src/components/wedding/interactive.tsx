@@ -156,7 +156,7 @@ export function Gallery() {
           <button onClick={() => go(-1)} className="absolute left-2 h-12 w-12 text-on-image hidden sm:flex items-center justify-center" aria-label="Previous"><ChevronLeft /></button>
           <img key={idx} src={imgs[idx]?.src} alt={imgs[idx]?.alt ?? ""} className="max-h-[85vh] max-w-[92vw] object-contain animate-in fade-in zoom-in-95 duration-300" />
           <button onClick={() => go(1)} className="absolute right-2 h-12 w-12 text-on-image hidden sm:flex items-center justify-center" aria-label="Next"><ChevronRight /></button>
-          <p className="absolute bottom-5 text-on-image/80 text-xs tracking-[0.2em]">{idx + 1} / {imgs.length}</p>
+          <p className="absolute bottom-5 text-on-image opacity-80 text-xs tracking-[0.2em]">{idx + 1} / {imgs.length}</p>
         </div>
       )}
     </section>

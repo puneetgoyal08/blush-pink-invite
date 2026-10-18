@@ -16,6 +16,7 @@ export function useCountdown() {
   const target = new Date(wedding.date).getTime();
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
+    if (wedding.dateIsPlaceholder || wedding.timeIsPlaceholder) return;
     setNow(Date.now());
     const t = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(t);
@@ -26,6 +27,12 @@ export function useCountdown() {
 export function Countdown({ compact = false, light = false }: { compact?: boolean; light?: boolean }) {
   const c = useCountdown();
   const tone = light ? "text-on-image" : "text-forest";
+  if (wedding.dateIsPlaceholder) {
+    return <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>The date will be announced soon.</p>;
+  }
+  if (wedding.timeIsPlaceholder) {
+    return <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>The time will be announced soon.</p>;
+  }
   if (c?.past) {
     return <p className={`font-serif italic text-2xl md:text-3xl ${tone}`}>We're married — thank you for celebrating with us.</p>;
   }
