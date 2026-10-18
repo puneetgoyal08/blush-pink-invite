@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CalendarPlus, MapPin, Plane, Train, Hotel, Car, Phone, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { CalendarPlus, MapPin, Plane, Train, Car, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -11,7 +11,7 @@ const fullDate = formatDate(wedding.date, { weekday: "long", day: "numeric", mon
 const displayedDate = wedding.dateIsPlaceholder ? "Date to be announced" : fullDate;
 
 const NAV = [
-  ["story", "Story"], ["celebrations", "Events"], ["travel", "Travel"], ["rsvp", "RSVP"], ["gallery", "Gallery"], ["faq", "FAQ"],
+  ["celebrations", "Events"], ["travel", "Travel"], ["rsvp", "RSVP"], ["gallery", "Gallery"], ["faq", "FAQ"],
 ] as const;
 
 export function Nav() {
@@ -65,7 +65,7 @@ export function Hero() {
         <p className="text-on-image text-sm tracking-[0.2em] uppercase">{displayedDate}</p>
         <p className="text-on-image opacity-80 text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
         {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
-        <a href="#story" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide hover:opacity-90 transition">
+        <a href="#celebrations" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide hover:opacity-90 transition">
           Explore Our Wedding <ChevronDown className="h-4 w-4" />
         </a>
       </div>
@@ -75,40 +75,6 @@ export function Hero() {
 
 function Botanical({ className = "" }: { className?: string }) {
   return <img src={botanical} alt="" aria-hidden className={`pointer-events-none select-none ${className}`} loading="lazy" width={1024} height={1024} />;
-}
-
-export function Story() {
-  const s = wedding.story;
-  return (
-    <section id="story" className="relative py-24 md:py-32 px-6 overflow-hidden">
-      <Botanical className="absolute -top-10 -right-24 w-64 opacity-50 sway" />
-      <div className="max-w-5xl mx-auto">
-        <SectionHeading eyebrow="Our story" title="Two Stories, One Beautiful Journey" />
-        <Reveal className="max-w-2xl mx-auto text-center font-serif text-xl md:text-2xl leading-relaxed text-forest/90">
-          <Text value={s.intro} />
-        </Reveal>
-        <div className="grid grid-cols-3 gap-3 md:gap-6 mt-16">
-          {s.photos.map((p, i) => (
-            <Reveal key={i} delay={i * 120} className={i === 1 ? "translate-y-8" : ""}>
-              <img src={p} alt="" loading="lazy" className="w-full aspect-[3/4] object-cover rounded-sm" />
-            </Reveal>
-          ))}
-        </div>
-        <ol className="relative mt-28 max-w-2xl mx-auto border-l border-gold/50 pl-8 space-y-12">
-          {s.milestones.map((m, i) => (
-            <Reveal key={i} delay={i * 80}>
-              <li className="relative">
-                <span className="absolute -left-[37px] top-2 h-2.5 w-2.5 rounded-full bg-gold ring-4 ring-background" />
-                <p className="eyebrow"><Text value={m.year} /></p>
-                <h3 className="text-3xl mt-1">{m.title}</h3>
-                <p className="text-muted-foreground mt-2"><Text value={m.text} /></p>
-              </li>
-            </Reveal>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
 }
 
 // Calendar entries need a duration; assume three hours when only a start time is set.
@@ -218,26 +184,6 @@ export function Travel() {
               <p className="mt-2 text-sm leading-relaxed"><Text value={v} /></p>
             </Reveal>
           ))}
-        </div>
-        <div className="hairline my-16" />
-        <div className="grid md:grid-cols-2 gap-12">
-          <Reveal>
-            <p className="eyebrow flex items-center gap-2"><Hotel className="h-4 w-4" /> Where to stay</p>
-            <ul className="mt-5 space-y-4">
-              {t.hotels.map((h, i) => <li key={i}><p className="font-serif text-2xl"><Text value={h.name} /></p><p className="text-sm text-muted-foreground"><Text value={h.note} /></p></li>)}
-            </ul>
-          </Reveal>
-          <Reveal>
-            <p className="eyebrow flex items-center gap-2"><Phone className="h-4 w-4" /> Questions? Reach out</p>
-            <ul className="mt-5 space-y-4">
-              {t.contacts.map((c, i) => (
-                <li key={i}>
-                  <p className="font-serif text-2xl"><Text value={c.name} /></p>
-                  <p className="text-sm text-muted-foreground">{c.role} · {isTBC(c.phone) ? <Text value={c.phone} /> : <a className="underline" href={`tel:${c.phone}`}>{c.phone}</a>}</p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
         </div>
       </div>
     </section>
