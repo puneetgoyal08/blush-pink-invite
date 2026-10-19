@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CalendarPlus, MapPin, Plane, Train, Car, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { CalendarPlus, MapPin, Plane, Train, Car, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -164,8 +164,8 @@ export function Travel() {
   const t = wedding.travel;
   const items = [
     { icon: Plane, label: "By air", v: t.airport },
-    { icon: Train, label: "By rail", v: t.railway },
-    { icon: Car, label: "Getting around", v: t.transport },
+    { icon: Bus, label: "By road", v: t.road },
+    { icon: Car, label: "Getting to Rampura Phul", v: t.transport },
   ];
   return (
     <section id="travel" className="py-24 md:py-32 px-6 bg-secondary/50">
@@ -173,8 +173,22 @@ export function Travel() {
         <SectionHeading eyebrow="Venue & travel" title="Finding your way to us" />
         <Reveal className="text-center mb-16">
           <h3 className="text-3xl"><Text value={t.venue.name} /></h3>
-          <p className="text-muted-foreground mt-2"><Text value={t.venue.address} /></p>
-          <a href={maps(`${clean(t.venue.name)} ${clean(t.venue.address)}`)} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
+          <p className="text-muted-foreground mt-2 max-w-xl mx-auto"><Text value={t.venue.address} /></p>
+          <a href={maps(clean(t.venue.name))} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
+        </Reveal>
+        <Reveal className="mb-12 md:mb-14 max-w-3xl mx-auto text-center md:text-left">
+          <Train className="h-5 w-5 text-gold mx-auto md:mx-0" />
+          <p className="eyebrow mt-3">By rail from Delhi</p>
+          <p className="mt-2 text-sm leading-relaxed">{t.railway.intro}</p>
+          <ul className="mt-4 grid sm:grid-cols-2 gap-x-8 gap-y-3 text-sm text-left">
+            {t.railway.trains.map((tr) => (
+              <li key={tr.no} className="border-l border-gold/60 pl-3">
+                <span className="font-medium">{tr.no}</span> {tr.name}
+                <span className="block text-muted-foreground">{tr.note}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-muted-foreground">{t.railway.outro}</p>
         </Reveal>
         <div className="grid md:grid-cols-3 gap-10 md:gap-8">
           {items.map(({ icon: I, label, v }) => (
