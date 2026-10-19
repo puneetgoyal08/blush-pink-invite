@@ -35,6 +35,9 @@ export const wedding = {
   timezone: "Asia/Kolkata",
   location: "Rampura Phul",
   rsvpDeadline: TBC("Date to be confirmed"),
+  // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
+  // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
+  rsvpSheetUrl: "",
   heroImage: hero,
   musicUrl: "", // add an mp3 URL to enable the music toggle
 

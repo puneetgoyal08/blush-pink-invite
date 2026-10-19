@@ -17,7 +17,7 @@ const rsvpSchema = z.object({
   attending: z.boolean(),
   guests: z.number().int().min(0).max(10),
   events: z.array(z.string().max(40)).max(10),
-  dietary: z.string().trim().max(200).optional().default(""),
+  travel: z.string().trim().max(200).optional().default(""), // arrival day and mode
   message: z.string().trim().max(600).optional().default(""),
   website: z.string().max(0).optional().default(""), // honeypot
 });
@@ -41,7 +41,8 @@ export const submitRsvp = createServerFn({ method: "POST" })
       attending: data.attending,
       guests: data.attending ? Math.max(1, data.guests) : 0,
       events: data.attending ? data.events : [],
-      dietary: data.dietary || null,
+      // No travel column yet, so travel plans are stored in the old dietary column.
+      dietary: data.travel ? `Travel: ${data.travel}` : null,
       message: data.message || null,
       ip_hash: hash,
       updated_at: new Date().toISOString(),
