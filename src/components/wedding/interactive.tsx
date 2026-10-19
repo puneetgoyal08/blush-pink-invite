@@ -4,6 +4,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, X, Check, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { submitRsvp, submitWish } from "@/lib/wedding.functions";
+import { postRsvpToSheet } from "@/lib/rsvp-sheet";
 import { wedding } from "@/config/wedding";
 import { Reveal, SectionHeading, Text } from "./ui";
 
@@ -34,15 +35,25 @@ export function Rsvp() {
     setErrors(e);
     if (Object.keys(e).length) return;
     setStatus("sending"); setServerError("");
-    try {
-      const r = await send({ data: {
+    const arrival = String(fd.get("arrival") || ""), mode = String(fd.get("mode") || "");
+    const message = String(fd.get("message") || ""), website = String(fd.get("website") || "");
+    // Save to the Google Sheet (works on every host) and to the backend (Lovable only) side by side.
+    const [sheet, server] = await Promise.allSettled([
+      postRsvpToSheet({
+        name, contact, attending: !!attending, guests: attending ? guests : 0,
+        events: attending ? events.map((id) => wedding.events.find((x) => x.id === id)?.name ?? id).join(", ") : "",
+        arrival: attending ? arrival : "", mode: attending ? mode : "", message, website,
+      }),
+      send({ data: {
         name, contact, attending: !!attending, guests, events,
-        dietary: String(fd.get("dietary") || ""), message: String(fd.get("message") || ""), website: String(fd.get("website") || ""),
-      } });
-      if (r.ok) { setResult({ attending: !!attending, updated: r.updated }); setStatus("done"); }
-      else { setServerError(r.error); setStatus("error"); }
-    } catch {
-      setServerError("Something went wrong. Please check your details and try again."); setStatus("error");
+        travel: attending ? [arrival, mode].filter(Boolean).join(" · ") : "", message, website,
+      } }),
+    ]);
+    const r = server.status === "fulfilled" ? server.value : null;
+    if (r?.ok || (sheet.status === "fulfilled" && sheet.value)) {
+      setResult({ attending: !!attending, updated: !!(r?.ok && r.updated) }); setStatus("done");
+    } else {
+      setServerError(r && !r.ok ? r.error : "Something went wrong. Please check your details and try again."); setStatus("error");
     }
   }
 
@@ -102,9 +113,21 @@ export function Rsvp() {
                   </div>
                   {errors.events && <p className="text-destructive text-sm mt-1.5">{errors.events}</p>}
                 </fieldset>
-                <div>
-                  <label htmlFor="r-diet" className={label}>Dietary preferences</label>
-                  <input id="r-diet" name="dietary" maxLength={200} placeholder="Vegetarian, Jain, allergies…" className={field} />
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="r-arrival" className={label}>When do you plan to arrive?</label>
+                    <select id="r-arrival" name="arrival" defaultValue="" className={field}>
+                      <option value="">Select</option>
+                      {["2 Dec or earlier", "3 Dec", "4 Dec", "5 Dec", "Not sure yet"].map((o) => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="r-mode" className={label}>How will you travel?</label>
+                    <select id="r-mode" name="mode" defaultValue="" className={field}>
+                      <option value="">Select</option>
+                      {["Train", "Flight", "Car", "Bus", "Not sure yet"].map((o) => <option key={o} value={o}>{o}</option>)}
+                    </select>
+                  </div>
                 </div>
               </div>
             )}
