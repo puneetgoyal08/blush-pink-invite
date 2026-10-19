@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CalendarPlus, MapPin, Plane, Train, Car, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { CalendarPlus, MapPin, Plane, Train, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -165,7 +165,6 @@ export function Travel() {
   const items = [
     { icon: Plane, label: "By air", v: t.airport },
     { icon: Bus, label: "By road", v: t.road },
-    { icon: Car, label: "Getting to Rampura Phul", v: t.transport },
   ];
   return (
     <section id="travel" className="py-24 md:py-32 px-6 bg-secondary/50">
@@ -190,7 +189,7 @@ export function Travel() {
           </ul>
           <p className="mt-4 text-sm text-muted-foreground">{t.railway.outro}</p>
         </Reveal>
-        <div className="grid md:grid-cols-3 gap-10 md:gap-8">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-3xl mx-auto">
           {items.map(({ icon: I, label, v }) => (
             <Reveal key={label} className="text-center md:text-left">
               <I className="h-5 w-5 text-gold mx-auto md:mx-0" />

@@ -92,7 +92,6 @@ export const wedding = {
     },
     airport: "Bathinda Airport (BUP) has a few Alliance Air flights a week from Delhi, about 1 hr 10 min. Chandigarh (IXC) is the nearest big airport, roughly 4 hours away by road.",
     road: "Bathinda is about 320 km from Delhi, roughly 5 to 6 hours by car. Buses run from Delhi through the day and take about 6 to 7 hours.",
-    transport: "Rampura Phul is about 40 minutes from Bathinda by car, along the Barnala road. Cabs and autos are easy to find in town.",
   },
 
   gallery: [
