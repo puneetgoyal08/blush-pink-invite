@@ -120,7 +120,6 @@ export function Celebrations() {
                       <Botanical className="w-1/2" />
                     </div>
                   )}
-                  <span className="absolute -top-5 left-5 font-serif italic text-6xl text-gold">{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <div>
                   <p className="eyebrow">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</p>
