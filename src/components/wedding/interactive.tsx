@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, X, Check, Loader2 } from "lucide-react";
 import { submitRsvp } from "@/lib/wedding.functions";
 import { postRsvpToSheet } from "@/lib/rsvp-sheet";
 import { wedding } from "@/config/wedding";
-import { Reveal, SectionHeading, Text } from "./ui";
+import { Reveal, SectionHeading } from "./ui";
 
 const field = "w-full h-12 px-4 rounded-md bg-card border border-input focus:outline-none focus:ring-2 focus:ring-ring text-base";
 const label = "block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2";
@@ -58,8 +58,7 @@ export function Rsvp() {
   return (
     <section id="rsvp" className="py-24 md:py-32 px-6">
       <div className="max-w-xl mx-auto">
-        <SectionHeading eyebrow="Kindly reply" title="Will you join us?" />
-        <Reveal className="text-center -mt-6 mb-12 text-muted-foreground text-sm">Please respond by <Text value={wedding.rsvpDeadline} /></Reveal>
+        <SectionHeading eyebrow="Come celebrate with us" title="It won't be complete without you" />
         {status === "done" && result ? (
           <div className="text-center py-12 border border-gold/50 rounded-lg bg-card animate-in fade-in zoom-in-95">
             <div className="h-14 w-14 rounded-full border border-gold mx-auto flex items-center justify-center"><Check className="h-6 w-6 text-gold" /></div>
