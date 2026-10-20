@@ -58,7 +58,7 @@ export function Rsvp() {
   return (
     <section id="rsvp" className="py-24 md:py-32 px-6">
       <div className="max-w-xl mx-auto">
-        <SectionHeading eyebrow="Kindly reply" title="Will you join us?" />
+        <SectionHeading eyebrow="Come celebrate with us" title="It won't be complete without you" />
         <Reveal className="text-center -mt-6 mb-12 text-muted-foreground text-sm">Please respond by <Text value={wedding.rsvpDeadline} /></Reveal>
         {status === "done" && result ? (
           <div className="text-center py-12 border border-gold/50 rounded-lg bg-card animate-in fade-in zoom-in-95">
