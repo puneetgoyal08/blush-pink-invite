@@ -5,6 +5,9 @@ import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
 import g4 from "@/assets/g4.jpg";
+import haldiArt from "@/assets/event-haldi.svg";
+import sangeetArt from "@/assets/event-sangeet.svg";
+import weddingArt from "@/assets/event-wedding.svg";
 
 export const TBC_PREFIX = "[TBC] ";
 export const TBC = (s: string) => TBC_PREFIX + s;
@@ -52,6 +55,7 @@ export const wedding = {
       venue: "At home",
       address: "Bathinda",
       hideDirections: true,
+      image: haldiArt,
     },
     {
       id: "sangeet",
@@ -62,7 +66,7 @@ export const wedding = {
       timeIsPlaceholder: false,
       venue: "Sepal",
       address: "Bathinda",
-      image: g4,
+      image: sangeetArt,
     },
     {
       id: "wedding",
@@ -73,7 +77,7 @@ export const wedding = {
       timeIsPlaceholder: false,
       venue: "Sky Heights",
       address: "Rampura Phul",
-      image: g3,
+      image: weddingArt,
     },
   ] as WeddingEvent[],
 

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="The bride and groom seen from behind, seated before the sacred fire under a marigold mandap, their scarves tied together">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8EEDB"/>
+      <stop offset="1" stop-color="#EFDDBA"/>
+    </linearGradient>
+    <radialGradient id="fireglow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFD27A" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FFD27A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#E2531F"/>
+      <stop offset="0.5" stop-color="#F29A2E"/>
+      <stop offset="1" stop-color="#FCD772"/>
+    </linearGradient>
+    <linearGradient id="pillar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B8934A"/>
+      <stop offset="0.5" stop-color="#E9CF8C"/>
+      <stop offset="1" stop-color="#B08A42"/>
+    </linearGradient>
+    <linearGradient id="dupatta" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B8262E"/>
+      <stop offset="1" stop-color="#8E1A24"/>
+    </linearGradient>
+    <linearGradient id="sherwani" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E9DCC0"/>
+      <stop offset="0.5" stop-color="#F8F0DE"/>
+      <stop offset="1" stop-color="#E2D3B4"/>
+    </linearGradient>
+    <linearGradient id="safa" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E9748A"/>
+      <stop offset="1" stop-color="#C94A66"/>
+    </linearGradient>
+    <pattern id="buti" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="1.6" fill="#F0C96A"/>
+      <circle cx="17" cy="17" r="1.6" fill="#F0C96A"/>
+    </pattern>
+    <g id="m"><circle r="9" fill="#E8892A"/><circle r="5" fill="#F5B63E"/></g>
+    <g id="my"><circle r="9" fill="#EDB421"/><circle r="5" fill="#F8D45C"/></g>
+    <g id="strand">
+      <use href="#m" y="0"/><use href="#my" y="17"/><use href="#m" y="34"/><use href="#my" y="51"/><use href="#m" y="68"/><use href="#my" y="85"/><use href="#m" y="102"/><use href="#my" y="119"/><use href="#m" y="136"/>
+    </g>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <rect y="473" width="800" height="127" fill="#E4CC98"/>
+  <!-- scene inset from the top so the event number has a quiet corner -->
+  <g transform="translate(40 50) scale(0.9)">
+  <!-- mandap back drapes -->
+  <path d="M120 70 C 200 160, 300 170, 400 120 C 500 170, 600 160, 680 70 Z" fill="#F3E2BE"/>
+  <path d="M120 70 L 120 470 L 680 470 L 680 70 C 600 200, 500 230, 400 200 C 300 230, 200 200, 120 70 Z" fill="#F6EAD0"/>
+
+  <!-- floor -->
+  <path d="M0 470 H800 V600 H0 Z" fill="#E4CC98"/>
+  <path d="M60 470 H740 L 780 520 H20 Z" fill="#EDD9AC"/>
+  <path d="M20 520 H780" stroke="#C8A462" stroke-width="2"/>
+
+  <!-- pillars -->
+  <g>
+    <rect x="96" y="70" width="34" height="400" fill="url(#pillar)"/>
+    <rect x="88" y="452" width="50" height="20" rx="3" fill="#A9853F"/>
+    <rect x="670" y="70" width="34" height="400" fill="url(#pillar)"/>
+    <rect x="662" y="452" width="50" height="20" rx="3" fill="#A9853F"/>
+    <g stroke="#9C7A36" stroke-width="2" opacity="0.6">
+      <path d="M96 140 H130 M96 260 H130 M96 380 H130 M670 140 H704 M670 260 H704 M670 380 H704"/>
+    </g>
+  </g>
+
+  <!-- canopy with scalloped edge -->
+  <path d="M60 40 H740 V78 H60 Z" fill="#B8262E"/>
+  <path d="M60 78 Q 94 104 128 78 Q 162 104 196 78 Q 230 104 264 78 Q 298 104 332 78 Q 366 104 400 78 Q 434 104 468 78 Q 502 104 536 78 Q 570 104 604 78 Q 638 104 672 78 Q 706 104 740 78 Z" fill="#B8262E"/>
+  <path d="M60 46 H740 M60 72 H740" stroke="#E3C26E" stroke-width="3"/>
+  <path d="M400 20 L 420 40 H380 Z" fill="#E3C26E"/>
+  <rect x="40" y="34" width="720" height="10" rx="3" fill="#C99A3C"/>
+
+  <!-- hanging marigold strands -->
+  <use href="#strand" x="160" y="96"/><use href="#strand" x="230" y="80"/>
+  <use href="#strand" x="570" y="80"/><use href="#strand" x="640" y="96"/>
+  <path d="M150 100 Q 400 210 650 100" fill="none" stroke="#8C6A2E" stroke-width="1.5"/>
+  <g>
+    <use href="#m" x="200" y="129"/><use href="#my" x="240" y="146"/><use href="#m" x="280" y="160"/><use href="#my" x="320" y="170"/><use href="#m" x="360" y="176"/><use href="#my" x="400" y="178"/><use href="#m" x="440" y="176"/><use href="#my" x="480" y="170"/><use href="#m" x="520" y="160"/><use href="#my" x="560" y="146"/><use href="#m" x="600" y="129"/>
+  </g>
+
+  <!-- sacred fire (agni) in the havan kund -->
+  <circle cx="400" cy="330" r="150" fill="url(#fireglow)"/>
+  <path d="M400 236 C 418 268, 446 286, 438 324 C 432 346, 368 346, 362 324 C 354 292, 382 278, 400 236 Z" fill="url(#flame)"/>
+  <path d="M374 270 C 382 292, 396 300, 390 322 C 380 330, 364 322, 364 306 C 364 292, 370 284, 374 270 Z" fill="#F29A2E"/>
+  <path d="M426 262 C 432 282, 446 296, 438 318 C 428 326, 414 318, 416 302 C 418 290, 424 280, 426 262 Z" fill="#F29A2E"/>
+  <path d="M400 276 C 410 296, 418 306, 412 324 C 406 332, 394 332, 390 322 C 386 306, 396 296, 400 276 Z" fill="#FCE29A"/>
+  <path d="M352 330 H448 L 440 372 H360 Z" fill="#A8693C"/>
+  <path d="M346 324 H454 V336 H346 Z" fill="#C4844E"/>
+  <path d="M360 348 H440" stroke="#8A532E" stroke-width="2"/>
+
+  <!-- low seats and diyas -->
+  <rect x="160" y="550" width="520" height="26" rx="5" fill="#8E1A24"/>
+  <path d="M160 556 H680" stroke="#E3C26E" stroke-width="3"/>
+  <g>
+    <ellipse cx="70" cy="548" rx="20" ry="7" fill="#B8803E"/>
+    <path d="M70 530 C 77 539, 77 544, 70 546 C 63 544, 63 539, 70 530 Z" fill="#F5A83A"/>
+    <ellipse cx="730" cy="548" rx="20" ry="7" fill="#B8803E"/>
+    <path d="M730 530 C 737 539, 737 544, 730 546 C 723 544, 723 539, 730 530 Z" fill="#F5A83A"/>
+  </g>
+
+  <!-- bride, seated, seen from behind: red dupatta draped over her head -->
+  <g>
+    <path d="M178 560 C 176 500, 196 450, 228 418 C 240 380, 250 340, 262 300 C 270 274, 290 258, 312 256 C 334 258, 354 274, 362 300 C 374 340, 384 380, 396 418 C 428 450, 448 500, 446 560 Z" fill="url(#dupatta)"/>
+    <path d="M178 560 C 176 500, 196 450, 228 418 C 240 380, 250 340, 262 300 C 270 274, 290 258, 312 256 C 334 258, 354 274, 362 300 C 374 340, 384 380, 396 418 C 428 450, 448 500, 446 560 Z" fill="url(#buti)"/>
+    <path d="M262 300 C 270 274, 290 258, 312 256 C 334 258, 354 274, 362 300" fill="none" stroke="#E3C26E" stroke-width="7"/>
+    <path d="M228 418 C 196 450, 176 500, 178 560 M396 418 C 428 450, 448 500, 446 560" fill="none" stroke="#E3C26E" stroke-width="9"/>
+    <path d="M286 300 C 290 360, 290 420, 300 560 M338 300 C 334 360, 334 420, 324 560" stroke="#7E1620" stroke-width="2" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- groom, seated, seen from behind: ivory sherwani and pink safa -->
+  <g>
+    <path d="M396 560 C 396 500, 410 440, 438 404 C 448 360, 466 330, 500 320 L 556 320 C 590 330, 608 360, 618 404 C 646 440, 660 500, 660 560 Z" fill="url(#sherwani)"/>
+    <path d="M528 322 L 528 560" stroke="#D6C59E" stroke-width="2"/>
+    <path d="M466 330 C 492 316, 564 316, 590 330" stroke="#E3C26E" stroke-width="5" fill="none"/>
+    <!-- stole over his shoulder -->
+    <path d="M500 322 C 486 360, 470 420, 460 470 L 482 474 C 494 420, 508 364, 520 324 Z" fill="#E3C26E"/>
+    <!-- neck and safa (turban) -->
+    <path d="M510 290 L 546 290 L 548 322 L 508 322 Z" fill="#B57A50"/>
+    <path d="M478 250 C 478 214, 500 198, 528 198 C 556 198, 578 214, 578 250 C 578 276, 566 294, 546 298 L 510 298 C 490 294, 478 276, 478 250 Z" fill="url(#safa)"/>
+    <path d="M482 236 C 510 222, 548 222, 574 236 M480 256 C 510 244, 548 244, 576 256 M484 276 C 510 266, 548 266, 572 276" stroke="#B23C58" stroke-width="3" fill="none"/>
+    <path d="M482 236 C 510 222, 548 222, 574 236" stroke="#E3C26E" stroke-width="2" fill="none" transform="translate(0 -6)"/>
+    <!-- turban tail falling down his back -->
+    <path d="M520 296 C 516 330, 518 380, 514 420 L 542 420 C 540 380, 542 330, 538 296 Z" fill="url(#safa)"/>
+    <path d="M514 410 H542" stroke="#E3C26E" stroke-width="5"/>
+  </g>
+
+  <!-- gathbandhan: her dupatta knotted to his stole -->
+  <path d="M396 470 C 420 480, 444 480, 466 468" stroke="#E3C26E" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <circle cx="430" cy="478" r="9" fill="#D4A94C"/>
+  <path d="M430 486 L 422 512 M430 486 L 438 512" stroke="#E3C26E" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- petals -->
+  <g fill="#E8892A"><circle cx="140" cy="560" r="4"/><circle cx="700" cy="545" r="4"/><circle cx="740" cy="585" r="3"/><circle cx="60" cy="590" r="3"/></g>
+  <g fill="#B8262E"><circle cx="110" cy="540" r="3"/><circle cx="720" cy="565" r="3"/><circle cx="90" cy="580" r="3"/></g>
+  </g>
+</svg>
