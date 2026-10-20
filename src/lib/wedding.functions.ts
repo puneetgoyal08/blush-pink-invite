@@ -55,28 +55,3 @@ export const submitRsvp = createServerFn({ method: "POST" })
     }
     return { ok: true as const, updated: !!existing };
   });
-
-const wishSchema = z.object({
-  name: z.string().trim().min(2).max(80),
-  message: z.string().trim().min(3).max(300),
-  website: z.string().max(0).optional().default(""),
-});
-
-export const submitWish = createServerFn({ method: "POST" })
-  .inputValidator((d) => wishSchema.parse(d))
-  .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    if (/https?:\/\/|www\./i.test(data.message)) return { ok: false as const, error: "Links aren't allowed in wishes." };
-    const hash = await ipHash();
-    const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
-    const { count } = await supabaseAdmin
-      .from("wishes").select("id", { count: "exact", head: true })
-      .eq("ip_hash", hash).gte("created_at", since);
-    if ((count ?? 0) >= 3) return { ok: false as const, error: "You've sent a few wishes already — thank you!" };
-    const { error } = await supabaseAdmin.from("wishes").insert({ name: data.name, message: data.message, ip_hash: hash });
-    if (error) {
-      console.error("wish error", error);
-      return { ok: false as const, error: "We couldn't send your wish. Please try again." };
-    }
-    return { ok: true as const };
-  });
