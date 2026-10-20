@@ -1,10 +1,12 @@
 // Central wedding configuration. Edit values here — the whole site updates.
 // Anything wrapped in TBC() is a placeholder shown with a "to be confirmed" tag.
 import hero from "@/assets/hero.jpg";
-import g1 from "@/assets/g1.jpg";
-import g2 from "@/assets/g2.jpg";
-import g3 from "@/assets/g3.jpg";
-import g4 from "@/assets/g4.jpg";
+import us1 from "@/assets/us-1.jpg";
+import us2 from "@/assets/us-2.jpg";
+import us3 from "@/assets/us-3.jpg";
+import us4 from "@/assets/us-4.jpg";
+import us5 from "@/assets/us-5.jpg";
+import us6 from "@/assets/us-6.jpg";
 import haldiArt from "@/assets/event-haldi.svg";
 import sangeetArt from "@/assets/event-sangeet.svg";
 import weddingArt from "@/assets/event-wedding.svg";
@@ -103,11 +105,12 @@ export const wedding = {
   },
 
   gallery: [
-    { src: g2, alt: "Nidhi and Puneet laughing at sunset" },
-    { src: g1, alt: "Mehendi hands holding a marigold garland" },
-    { src: hero, alt: "The couple walking beneath a floral archway" },
-    { src: g4, alt: "Palace courtyard lit with lanterns" },
-    { src: g3, alt: "Brass diya with jasmine and rose petals" },
+    { src: us1, alt: "Nidhi and Puneet hand in hand under a white floral arch, with confetti falling" },
+    { src: us2, alt: "Nidhi twirling in an olive lehenga as Puneet looks on" },
+    { src: us3, alt: "Nidhi and Puneet sharing an umbrella by the pool" },
+    { src: us4, alt: "Nidhi and Puneet standing together in a cafe" },
+    { src: us5, alt: "Puneet holding Nidhi's hand as she twirls an umbrella in the rain" },
+    { src: us6, alt: "Nidhi and Puneet at a candlelit birthday dinner" },
   ],
 
   faq: [
