@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState, type FormEvent } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, X, Check, Loader2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { submitRsvp, submitWish } from "@/lib/wedding.functions";
+import { submitRsvp } from "@/lib/wedding.functions";
 import { postRsvpToSheet } from "@/lib/rsvp-sheet";
 import { wedding } from "@/config/wedding";
 import { Reveal, SectionHeading, Text } from "./ui";
@@ -182,79 +180,6 @@ export function Gallery() {
           <p className="absolute bottom-5 text-on-image opacity-80 text-xs tracking-[0.2em]">{idx + 1} / {imgs.length}</p>
         </div>
       )}
-    </section>
-  );
-}
-
-export function Wishes() {
-  const send = useServerFn(submitWish);
-  const qc = useQueryClient();
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["wishes"],
-    queryFn: async () => {
-      const { data, error } = await supabase.rpc("get_approved_wishes");
-      if (error) throw error;
-      return data ?? [];
-    },
-  });
-  const [msg, setMsg] = useState("");
-  const [state, setState] = useState<"idle" | "sending" | "done">("idle");
-  const [err, setErr] = useState("");
-
-  async function onSubmit(ev: FormEvent<HTMLFormElement>) {
-    ev.preventDefault();
-    if (state === "sending") return;
-    const fd = new FormData(ev.currentTarget);
-    const name = String(fd.get("name") || "").trim();
-    if (name.length < 2) return setErr("Please add your name.");
-    if (msg.trim().length < 3) return setErr("Please write a short message.");
-    setErr(""); setState("sending");
-    try {
-      const r = await send({ data: { name, message: msg, website: String(fd.get("website") || "") } });
-      if (r.ok) { setState("done"); setMsg(""); qc.invalidateQueries({ queryKey: ["wishes"] }); }
-      else { setErr(r.error); setState("idle"); }
-    } catch { setErr("Something went wrong. Please try again."); setState("idle"); }
-  }
-
-  return (
-    <section id="wishes" className="py-24 md:py-32 px-6">
-      <div className="max-w-3xl mx-auto">
-        <SectionHeading eyebrow="Guest book" title="Send your blessings" />
-        {state === "done" ? (
-          <div className="text-center border border-gold/50 rounded-lg bg-card py-10 px-6 animate-in fade-in">
-            <p className="font-serif text-3xl">Thank you for your love</p>
-            <p className="text-muted-foreground mt-2 text-sm">Your wish will appear once the couple has seen it.</p>
-            <button onClick={() => setState("idle")} className="mt-5 text-sm underline text-muted-foreground">Write another</button>
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} noValidate className="space-y-4 max-w-xl mx-auto">
-            <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
-            <div><label htmlFor="w-name" className={label}>Your name</label><input id="w-name" name="name" maxLength={80} className={field} /></div>
-            <div>
-              <label htmlFor="w-msg" className={label}>Your message</label>
-              <textarea id="w-msg" value={msg} onChange={(e) => setMsg(e.target.value.slice(0, 300))} rows={3} className={`${field} h-auto py-3`} />
-              <p className="text-right text-xs text-muted-foreground mt-1">{msg.length}/300</p>
-            </div>
-            {err && <p role="alert" className="text-destructive text-sm">{err}</p>}
-            <button disabled={state === "sending"} className="w-full py-4 rounded-full border border-gold hover:bg-muted transition inline-flex items-center justify-center gap-2 disabled:opacity-60">
-              {state === "sending" && <Loader2 className="h-4 w-4 animate-spin" />} Send wish
-            </button>
-          </form>
-        )}
-        <div className="mt-16 grid sm:grid-cols-2 gap-5">
-          {isLoading && <p className="text-center text-muted-foreground text-sm sm:col-span-2">Loading wishes…</p>}
-          {isError && <p className="text-center text-muted-foreground text-sm sm:col-span-2">Wishes couldn't load right now.</p>}
-          {data && data.length === 0 && <p className="text-center text-muted-foreground font-serif italic text-lg sm:col-span-2">Be the first to leave a blessing.</p>}
-          {data?.map((w) => (
-            <Reveal key={w.id}>
-              <blockquote className="border-l-2 border-gold pl-5 py-1">
-                <p className="font-serif text-xl leading-snug">“{w.message}”</p>
-                <footer className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">— {w.name}</footer>
-              </blockquote>
-            </Reveal>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

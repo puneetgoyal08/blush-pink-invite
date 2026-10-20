@@ -8,7 +8,7 @@ import {
   Faq,
   Closing,
 } from "@/components/wedding/sections";
-import { Rsvp, Gallery, Wishes } from "@/components/wedding/interactive";
+import { Rsvp, Gallery } from "@/components/wedding/interactive";
 import { ShareButton } from "@/components/wedding/share";
 import { InvitationOpener } from "@/components/wedding/invitation-opener";
 import { useState } from "react";
@@ -47,7 +47,6 @@ function Index() {
         <Travel />
         <Rsvp />
         <Gallery />
-        <Wishes />
         <Faq />
         <Closing />
         <ShareButton variant="float" />
