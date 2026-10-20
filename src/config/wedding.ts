@@ -36,7 +36,8 @@ export const wedding = {
   dateIsPlaceholder: false,
   timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
-  location: "Rampura Phul",
+  location: "Bathinda",
+  hashtag: "#SarvagunNiPun",
   rsvpDeadline: TBC("Date to be confirmed"),
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
   // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
@@ -97,7 +98,7 @@ export const wedding = {
       ],
       outro: "Please check current timings on IRCTC or NTES before booking.",
     },
-    airport: "Bathinda Airport (BUP) has a few Alliance Air flights a week from Delhi, about 1 hr 10 min. Chandigarh (IXC) is the nearest big airport, roughly 4 hours away by road.",
+    airport: "Fly into Amritsar (ATQ), about 3.5 hours away by road; Ludhiana (LUH), about 2.5 hours; or Chandigarh (IXC), the biggest nearby airport, about 4 hours.",
     road: "Bathinda is about 320 km from Delhi, roughly 5 to 6 hours by car. Buses run from Delhi through the day and take about 6 to 7 hours.",
   },
 

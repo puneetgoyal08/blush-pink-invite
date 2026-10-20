@@ -64,6 +64,7 @@ export function Hero() {
         <div className="hairline w-32 mx-auto my-6" />
         <p className="text-on-image text-sm tracking-[0.2em] uppercase">{displayedDate}</p>
         <p className="text-on-image opacity-80 text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
+        {wedding.hashtag && <p className="text-gold font-serif italic text-lg md:text-xl mt-3 tracking-wide">{wedding.hashtag}</p>}
         {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
         <a href="#celebrations" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide hover:opacity-90 transition">
           Explore Our Wedding <ChevronDown className="h-4 w-4" />
