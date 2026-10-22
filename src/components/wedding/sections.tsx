@@ -49,7 +49,7 @@ export function Hero() {
     <header id="top" className="relative min-h-[100svh] flex flex-col items-center justify-end overflow-hidden">
       <picture>
         <source media="(orientation: landscape)" srcSet={wedding.heroImageLandscape} />
-        <img src={wedding.heroImage} alt="A garland-lined aisle leading to a floral mandap at sunset" className="absolute inset-0 h-full w-full object-cover" width={1024} height={1536} fetchPriority="high" />
+        <img src={wedding.heroImage} alt="A lantern-lit aisle leading to a floral mandap at night" className="absolute inset-0 h-full w-full object-cover" width={941} height={1672} fetchPriority="high" />
       </picture>
       <div className="absolute inset-0 bg-hero-overlay" />
       {wedding.musicUrl && (
