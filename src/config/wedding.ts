@@ -121,9 +121,7 @@ export const wedding = {
       a: "Indian ethnic wear is perfect throughout! For the Haldi, bright yellows work beautifully. For the Sangeet, dress to dance — festive, glam Indo-western is a great fit. For the Wedding, traditional formal attire is ideal.",
     },
     { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },
-    { q: "Is there parking or transport?", a: "Details will be shared closer to the date." },
-    { q: "Can I bring children or a plus-one?", a: "Of course — the more the merrier! We'd love for you to bring your family and loved ones to celebrate with us." },
-  ],
+    { q: "Is there parking or transport?", a: "Details will be shared closer to the date." },  ],
 };
 
 export const coupleNames = `${wedding.bride} & ${wedding.groom}`;
