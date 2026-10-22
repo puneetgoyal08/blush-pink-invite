@@ -47,9 +47,9 @@ export function Countdown({ compact = false, light = false }: { compact?: boolea
             <div className={`font-serif tabular-nums ${tone} ${compact ? "text-3xl" : "text-5xl md:text-7xl"}`}>
               {v === undefined ? "—" : String(v).padStart(2, "0")}
             </div>
-            <div className={`mt-1 uppercase tracking-[0.25em] ${compact ? "text-[0.6rem]" : "text-[0.65rem] md:text-xs"} ${light ? "text-on-image opacity-80" : "text-muted-foreground"}`}>{label}</div>
+            <div className={`mt-1 uppercase tracking-[0.25em] ${compact ? "text-[0.6rem]" : "text-[0.65rem] md:text-xs"} ${light ? "text-on-image" : "text-muted-foreground"}`}>{label}</div>
           </div>
-          {i < 3 && <span className={`text-gold ${compact ? "ml-5 text-xl" : "ml-6 md:ml-14 text-3xl"} font-serif`}>·</span>}
+          {i < 3 && <span className={`${light ? "text-champagne" : "text-gold"} ${compact ? "ml-5 text-xl" : "ml-6 md:ml-14 text-3xl"} font-serif`}>·</span>}
         </div>
       ))}
     </div>

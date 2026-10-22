@@ -57,19 +57,19 @@ export function Hero() {
           {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
         </button>
       )}
-      <div className="relative z-10 text-center px-6 pb-16 pt-24 max-w-2xl animate-in fade-in duration-1000">
+      <div className="hero-copy relative z-10 text-center px-6 pb-16 pt-24 max-w-2xl animate-in fade-in duration-1000">
         <Monogram light className="h-20 w-20 mx-auto mb-6" />
-        <p className="eyebrow mb-5 text-on-image">The wedding of</p>
+        <p className="eyebrow mb-5 text-on-image font-medium">The wedding of</p>
         <h1 className="text-on-image text-6xl sm:text-7xl md:text-8xl leading-[0.95]">
-          {wedding.bride} <span className="italic text-gold">&amp;</span><br className="sm:hidden" /> {wedding.groom}
+          {wedding.bride} <span className="italic text-champagne">&amp;</span><br className="sm:hidden" /> {wedding.groom}
         </h1>
-        <p className="text-on-image opacity-90 mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
+        <p className="text-on-image mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
         <div className="hairline w-32 mx-auto my-6" />
-        <p className="text-on-image text-sm tracking-[0.2em] uppercase">{displayedDate}</p>
-        <p className="text-on-image opacity-80 text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
-        {wedding.hashtag && <p className="text-gold font-serif italic text-lg md:text-xl mt-3 tracking-wide">{wedding.hashtag}</p>}
+        <p className="text-on-image text-sm font-medium tracking-[0.2em] uppercase">{displayedDate}</p>
+        <p className="text-on-image text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
+        {wedding.hashtag && <p className="text-champagne font-serif italic text-lg md:text-xl mt-3 tracking-wide">{wedding.hashtag}</p>}
         {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
-        <a href="#celebrations" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide hover:opacity-90 transition">
+        <a href="#celebrations" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide [text-shadow:none] hover:opacity-90 transition">
           Explore Our Wedding <ChevronDown className="h-4 w-4" />
         </a>
       </div>
