@@ -150,19 +150,6 @@ export function Celebrations() {
   );
 }
 
-export function CountdownSection() {
-  return (
-    <section className="py-24 md:py-32 px-6 text-center relative overflow-hidden">
-      <Botanical className="absolute -left-20 bottom-0 w-56 opacity-40 sway" />
-      <Reveal>
-        <p className="eyebrow mb-4">{wedding.dateIsPlaceholder ? "The date" : wedding.timeIsPlaceholder ? "Save the date" : "Counting down to"}</p>
-        <p className="font-serif italic text-3xl md:text-4xl mb-12">{displayedDate}</p>
-        <Countdown />
-      </Reveal>
-    </section>
-  );
-}
-
 export function Travel() {
   const t = wedding.travel;
   const items = [

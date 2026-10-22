@@ -3,7 +3,6 @@ import {
   Nav,
   Hero,
   Celebrations,
-  CountdownSection,
   Travel,
   Faq,
   Closing,
@@ -43,7 +42,6 @@ function Index() {
         <Nav />
         <Hero />
         <Celebrations />
-        <CountdownSection />
         <Travel />
         <Rsvp />
         <Gallery />
