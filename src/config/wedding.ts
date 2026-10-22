@@ -120,9 +120,7 @@ export const wedding = {
       q: "What should I wear?",
       a: "Indian ethnic wear is perfect throughout! For the Haldi, bright yellows work beautifully. For the Sangeet, dress to dance — festive, glam Indo-western is a great fit. For the Wedding, traditional formal attire is ideal.",
     },
-    { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },
-    { q: "Is there parking or transport?", a: "Details will be shared closer to the date." },
-  ],
+    { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },  ],
 };
 
 export const coupleNames = `${wedding.bride} & ${wedding.groom}`;
