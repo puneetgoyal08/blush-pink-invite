@@ -172,32 +172,8 @@
   place-items: center;
   overflow: hidden;
   padding: 1.5rem;
-  color: var(--forest);
-  background: var(--ivory);
+  color: var(--on-image);
   transition: opacity 200ms ease 1s, visibility 0s linear 1.2s;
-}
-
-.invitation-opening::before,
-.invitation-opening::after {
-  position: absolute;
-  z-index: 2;
-  width: min(28vw, 19rem);
-  aspect-ratio: 1;
-  content: "";
-  border: 1px solid oklch(0.74 0.085 80 / 0.3);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: opacity 300ms ease;
-}
-
-.invitation-opening::before {
-  top: -12rem;
-  left: -9rem;
-}
-
-.invitation-opening::after {
-  right: -10rem;
-  bottom: -13rem;
 }
 
 .invitation-opening.is-opening {
@@ -211,22 +187,30 @@
   z-index: 1;
   top: 0;
   bottom: 0;
-  width: 50.1%;
-  background:
-    radial-gradient(ellipse at 100% 50%, oklch(1 0.008 85 / 0.75), transparent 58%),
-    linear-gradient(145deg, oklch(0.95 0.025 83), var(--ivory) 55%, oklch(0.94 0.025 75));
+  width: 50%;
+  overflow: hidden;
+  background: var(--forest);
   transition: transform 1.15s cubic-bezier(0.76, 0, 0.2, 1);
 }
 
-.invitation-opening__panel--left {
+/* Each panel shows one half of the same full-screen doors image, so the seam splits as they slide. */
+.invitation-opening__panel img {
+  position: absolute;
+  top: 0;
+  width: 200%;
+  max-width: none;
+  height: 100%;
+  object-fit: cover;
+}
+
+.invitation-opening__panel--left,
+.invitation-opening__panel--left img {
   left: 0;
 }
 
-.invitation-opening__panel--right {
+.invitation-opening__panel--right,
+.invitation-opening__panel--right img {
   right: 0;
-  background:
-    radial-gradient(ellipse at 0% 50%, oklch(1 0.008 85 / 0.75), transparent 58%),
-    linear-gradient(145deg, oklch(0.95 0.025 83), var(--ivory) 55%, oklch(0.94 0.025 75));
 }
 
 .invitation-opening.is-opening .invitation-opening__panel--left {
@@ -237,18 +221,20 @@
   transform: translateX(101%);
 }
 
-.invitation-opening.is-opening::before,
-.invitation-opening.is-opening::after {
-  opacity: 0;
-}
-
 .invitation-opening__content {
   position: relative;
   z-index: 3;
   display: flex;
-  width: min(100%, 40rem);
+  width: min(100%, 34rem);
   flex-direction: column;
   align-items: center;
+  padding: 2.25rem 1.75rem 1.5rem;
+  border: 1px solid oklch(0.9 0.06 85 / 0.35);
+  border-radius: 1.25rem;
+  background: oklch(0.19 0.035 155 / 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 24px 60px oklch(0.1 0.02 155 / 0.5);
   text-align: center;
   transition: opacity 350ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.25, 1);
 }
@@ -260,7 +246,7 @@
 
 .invitation-opening__eyebrow {
   margin-bottom: 1.1rem;
-  color: oklch(0.54 0.07 75);
+  color: var(--champagne);
   font-size: 0.63rem;
   letter-spacing: 0.27em;
 }
@@ -284,14 +270,15 @@
 }
 
 .invitation-opening__title i {
-  color: var(--gold);
+  margin-right: 0.4em;
+  color: var(--champagne);
   font-size: 0.62em;
   font-weight: 400;
 }
 
 .invitation-opening__description {
   margin: 0.9rem 0 0;
-  color: oklch(0.47 0.03 150);
+  color: oklch(0.93 0.02 85);
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-style: italic;
@@ -305,10 +292,10 @@
   gap: 0.65rem;
   margin-top: 2rem;
   padding: 0 1.65rem;
-  border: 1px solid var(--forest);
+  border: 1px solid var(--ivory);
   border-radius: 999px;
-  background: var(--forest);
-  color: var(--ivory);
+  background: var(--ivory);
+  color: var(--forest);
   font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -319,12 +306,12 @@
 
 .invitation-opening__open:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: oklch(0.27 0.05 155);
+  background: var(--champagne);
 }
 
 .invitation-opening__open:focus-visible,
 .invitation-opening__skip:focus-visible {
-  outline: 2px solid var(--forest);
+  outline: 2px solid var(--champagne);
   outline-offset: 6px;
 }
 
@@ -338,17 +325,17 @@
   padding: 0.5rem 0.75rem;
   border: 0;
   background: transparent;
-  color: oklch(0.47 0.03 150);
+  color: oklch(0.93 0.02 85);
   font-size: 0.8rem;
   text-decoration: underline;
-  text-decoration-color: oklch(0.74 0.085 80 / 0.7);
+  text-decoration-color: oklch(0.9 0.06 85 / 0.6);
   text-underline-offset: 0.25rem;
   cursor: pointer;
 }
 
 .invitation-opening__ornament {
   margin-top: 1.25rem;
-  color: oklch(0.68 0.075 80 / 0.7);
+  color: oklch(0.9 0.06 85 / 0.8);
   font-size: 1.5rem;
 }
 

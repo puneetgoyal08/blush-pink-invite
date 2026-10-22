@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { coupleNames } from "@/config/wedding";
 import { Monogram } from "./ui";
 import { ArrowRight } from "lucide-react";
+import doorsLandscape from "@/assets/opener-landscape.jpg";
+import doorsPortrait from "@/assets/opener-portrait.jpg";
 
 export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
   const [isOpening, setIsOpening] = useState(false);
@@ -47,11 +49,17 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
       aria-labelledby="invitation-opening-title"
       aria-describedby="invitation-opening-description"
     >
-      <span className="invitation-opening__panel invitation-opening__panel--left" aria-hidden="true" />
-      <span className="invitation-opening__panel invitation-opening__panel--right" aria-hidden="true" />
+      {(["left", "right"] as const).map((side) => (
+        <div key={side} className={`invitation-opening__panel invitation-opening__panel--${side}`} aria-hidden="true">
+          <picture>
+            <source media="(orientation: landscape)" srcSet={doorsLandscape} />
+            <img src={doorsPortrait} alt="" fetchPriority="high" />
+          </picture>
+        </div>
+      ))}
       <div className="invitation-opening__content">
         <p className="eyebrow invitation-opening__eyebrow">Together with our families</p>
-        <Monogram className="invitation-opening__monogram" />
+        <Monogram light className="invitation-opening__monogram" />
         <h1 id="invitation-opening-title" className="invitation-opening__title" aria-label={coupleNames}>
           {coupleNames.split(" & ").map((name, index) => (
             <span key={name}>
