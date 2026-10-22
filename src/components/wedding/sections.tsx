@@ -47,7 +47,10 @@ export function Hero() {
   }
   return (
     <header id="top" className="relative min-h-[100svh] flex flex-col items-center justify-end overflow-hidden">
-      <img src={wedding.heroImage} alt="Nidhi and Puneet walking beneath a floral archway" className="absolute inset-0 h-full w-full object-cover" width={1088} height={1600} fetchPriority="high" />
+      <picture>
+        <source media="(orientation: landscape)" srcSet={wedding.heroImageLandscape} />
+        <img src={wedding.heroImage} alt="A garland-lined aisle leading to a floral mandap at sunset" className="absolute inset-0 h-full w-full object-cover" width={1024} height={1536} fetchPriority="high" />
+      </picture>
       <div className="absolute inset-0 bg-hero-overlay" />
       {wedding.musicUrl && (
         <button onClick={toggle} className="absolute top-5 right-5 z-10 h-11 w-11 rounded-full border border-gold/60 text-on-image flex items-center justify-center backdrop-blur-sm" aria-label={playing ? "Mute music" : "Play music"}>

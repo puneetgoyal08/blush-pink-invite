@@ -1,15 +1,16 @@
 // Central wedding configuration. Edit values here — the whole site updates.
 // Anything wrapped in TBC() is a placeholder shown with a "to be confirmed" tag.
-import hero from "@/assets/hero.jpg";
+import heroPortrait from "@/assets/hero-portrait.jpg";
+import heroLandscape from "@/assets/hero-landscape.jpg";
 import us1 from "@/assets/us-1.jpg";
 import us2 from "@/assets/us-2.jpg";
 import us3 from "@/assets/us-3.jpg";
 import us4 from "@/assets/us-4.jpg";
 import us5 from "@/assets/us-5.jpg";
 import us6 from "@/assets/us-6.jpg";
-import haldiPhoto from "@/assets/haldi.png";
-import sangeetPhoto from "@/assets/sangeet.png";
-import weddingPhoto from "@/assets/wedding-ceremony.png";
+import haldiPhoto from "@/assets/haldi.jpg";
+import sangeetPhoto from "@/assets/sangeet.jpg";
+import weddingPhoto from "@/assets/wedding-ceremony.jpg";
 
 export const TBC_PREFIX = "[TBC] ";
 export const TBC = (s: string) => TBC_PREFIX + s;
@@ -44,7 +45,8 @@ export const wedding = {
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
   // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
   rsvpSheetUrl: "https://script.google.com/macros/s/AKfycbz-iWZOoQJaZJS094Af-TgwhEqPUCFYQhebiXyLF0CkLqrP_MU7DBrYQUD85haq5jNL_A/exec",
-  heroImage: hero,
+  heroImage: heroPortrait,
+  heroImageLandscape: heroLandscape,
   musicUrl: "", // add an mp3 URL to enable the music toggle
 
   events: [
@@ -114,11 +116,13 @@ export const wedding = {
   ],
 
   faq: [
-    { q: "What should I wear?", a: TBC("Dress code notes for each event.") },
+    {
+      q: "What should I wear?",
+      a: "Indian ethnic wear is perfect throughout! For the Haldi, bright yellows work beautifully. For the Sangeet, dress to dance — festive, glam Indo-western is a great fit. For the Wedding, traditional formal attire is ideal.",
+    },
     { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },
-    { q: "Is there parking or transport?", a: TBC("Parking and transport details.") },
-    { q: "Can I bring children or a plus-one?", a: TBC("Your guidance on children and plus-ones.") },
-    { q: "Do you have a gift preference?", a: TBC("Your gift preferences.") },
+    { q: "Is there parking or transport?", a: "Details will be shared closer to the date." },
+    { q: "Can I bring children or a plus-one?", a: "Of course — the more the merrier! We'd love for you to bring your family and loved ones to celebrate with us." },
   ],
 };
 
