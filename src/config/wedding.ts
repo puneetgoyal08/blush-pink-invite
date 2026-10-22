@@ -7,9 +7,9 @@ import us3 from "@/assets/us-3.jpg";
 import us4 from "@/assets/us-4.jpg";
 import us5 from "@/assets/us-5.jpg";
 import us6 from "@/assets/us-6.jpg";
-import haldiArt from "@/assets/event-haldi.svg";
-import sangeetArt from "@/assets/event-sangeet.svg";
-import weddingArt from "@/assets/event-wedding.svg";
+import haldiPhoto from "@/assets/haldi.png";
+import sangeetPhoto from "@/assets/sangeet.png";
+import weddingPhoto from "@/assets/wedding-ceremony.png";
 
 export const TBC_PREFIX = "[TBC] ";
 export const TBC = (s: string) => TBC_PREFIX + s;
@@ -58,7 +58,7 @@ export const wedding = {
       venue: "At home",
       address: "Bathinda",
       hideDirections: true,
-      image: haldiArt,
+      image: haldiPhoto,
     },
     {
       id: "sangeet",
@@ -69,7 +69,7 @@ export const wedding = {
       timeIsPlaceholder: false,
       venue: "Sepal",
       address: "Bathinda",
-      image: sangeetArt,
+      image: sangeetPhoto,
     },
     {
       id: "wedding",
@@ -80,7 +80,7 @@ export const wedding = {
       timeIsPlaceholder: false,
       venue: "Sky Heights",
       address: "Rampura Phul",
-      image: weddingArt,
+      image: weddingPhoto,
     },
   ] as WeddingEvent[],
 
