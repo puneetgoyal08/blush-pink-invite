@@ -54,7 +54,7 @@ export const wedding = {
     {
       id: "haldi",
       name: "Haldi",
-      description: "Golden glow before forever begins",
+      description: "Shagun ka noor, apno ka pyar",
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
