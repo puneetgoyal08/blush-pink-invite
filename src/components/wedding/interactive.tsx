@@ -3,7 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { ChevronLeft, ChevronRight, X, Check, Loader2 } from "lucide-react";
 import { submitRsvp } from "@/lib/wedding.functions";
 import { postRsvpToSheet } from "@/lib/rsvp-sheet";
-import { wedding } from "@/config/wedding";
+import { coupleNames, wedding } from "@/config/wedding";
 import { Reveal, SectionHeading } from "./ui";
 
 const field = "w-full h-12 px-4 rounded-md bg-card border border-input focus:outline-none focus:ring-2 focus:ring-ring text-base";
@@ -13,7 +13,7 @@ export function Rsvp() {
   const send = useServerFn(submitRsvp);
   const [attending, setAttending] = useState<boolean | null>(null);
   const [events, setEvents] = useState<string[]>([]);
-  const [errors, setErrors] = useState<Partial<Record<"name"|"contact"|"attending"|"events", string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<"name"|"attending"|"events", string>>>({});
   const [status, setStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
   const [result, setResult] = useState<{ attending: boolean; updated: boolean } | null>(null);
   const [serverError, setServerError] = useState("");
@@ -23,11 +23,9 @@ export function Rsvp() {
     if (status === "sending") return;
     const fd = new FormData(ev.currentTarget);
     const name = String(fd.get("name") || "").trim();
-    const contact = String(fd.get("contact") || "").trim();
     const guests = Number(fd.get("guests") || 1);
-    const e: Partial<Record<"name"|"contact"|"attending"|"events", string>> = {};
+    const e: Partial<Record<"name"|"attending"|"events", string>> = {};
     if (name.length < 2) e.name = "Please enter your full name.";
-    if (!/^\S+@\S+\.\S+$/.test(contact) && !/^\+?[\d\s-]{8,}$/.test(contact)) e.contact = "Enter a valid phone number or email.";
     if (attending === null) e.attending = "Please let us know if you can make it.";
     if (attending && events.length === 0) e.events = "Choose at least one celebration.";
     setErrors(e);
@@ -38,12 +36,12 @@ export function Rsvp() {
     // Save to the Google Sheet (works on every host) and to the backend (Lovable only) side by side.
     const [sheet, server] = await Promise.allSettled([
       postRsvpToSheet({
-        name, contact, attending: !!attending, guests: attending ? guests : 0,
+        name, contact: "", attending: !!attending, guests: attending ? guests : 0,
         events: attending ? events.map((id) => wedding.events.find((x) => x.id === id)?.name ?? id).join(", ") : "",
         arrival: attending ? arrival : "", mode: attending ? mode : "", message, website,
       }),
       send({ data: {
-        name, contact, attending: !!attending, guests, events,
+        name, attending: !!attending, guests, events,
         travel: attending ? [arrival, mode].filter(Boolean).join(" · ") : "", message, website,
       } }),
     ]);
@@ -73,11 +71,6 @@ export function Rsvp() {
               <label htmlFor="r-name" className={label}>Your name</label>
               <input id="r-name" name="name" maxLength={100} className={field} autoComplete="name" aria-invalid={!!errors.name} />
               {errors.name && <p className="text-destructive text-sm mt-1.5">{errors.name}</p>}
-            </div>
-            <div>
-              <label htmlFor="r-contact" className={label}>Phone or email</label>
-              <input id="r-contact" name="contact" maxLength={255} className={field} inputMode="email" aria-invalid={!!errors.contact} />
-              {errors.contact && <p className="text-destructive text-sm mt-1.5">{errors.contact}</p>}
             </div>
             <fieldset>
               <legend className={label}>Attendance</legend>
@@ -158,12 +151,17 @@ export function Gallery() {
   return (
     <section id="gallery" className="py-24 md:py-32 px-4 bg-muted/60">
       <div className="max-w-6xl mx-auto">
-        <SectionHeading eyebrow="Moments" title="A few frames of us" />
+        <SectionHeading eyebrow="Moments" title={wedding.galleryTitle} />
+        <Reveal className="max-w-2xl mx-auto text-center -mt-4 mb-12 md:mb-16 font-serif text-lg md:text-xl leading-relaxed text-balance">
+          {wedding.galleryNote.map((p) => <p key={p} className="mb-4">{p}</p>)}
+          <p className="mt-6 italic text-muted-foreground">With love,</p>
+          <p className="text-2xl md:text-3xl mt-1">{coupleNames}</p>
+        </Reveal>
         <div className="columns-2 md:columns-3 gap-3 md:gap-5 [&>*]:mb-3 md:[&>*]:mb-5">
           {imgs.map((im, i) => (
             <Reveal key={i} delay={(i % 3) * 100}>
               <button onClick={() => setIdx(i)} className="block w-full overflow-hidden rounded-sm group" aria-label={`Open photo: ${im.alt}`}>
-                <img src={im.src} alt={im.alt} loading="lazy" className="w-full h-auto transition duration-700 group-hover:scale-105" />
+                <img src={im.src} alt={im.alt} loading="lazy" className="w-full h-auto grayscale contrast-105 transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />
               </button>
             </Reveal>
           ))}

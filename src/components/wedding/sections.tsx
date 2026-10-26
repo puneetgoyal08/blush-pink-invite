@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CalendarPlus, MapPin, Plane, Train, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { MapPin, Plane, Train, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -59,15 +59,15 @@ export function Hero() {
       )}
       <div className="hero-copy relative z-10 text-center px-6 pb-16 pt-24 max-w-2xl animate-in fade-in duration-1000">
         <Monogram light className="h-20 w-20 mx-auto mb-6" />
-        <p className="eyebrow mb-5 text-on-image font-medium">The wedding of</p>
         <h1 className="text-on-image text-6xl sm:text-7xl md:text-8xl leading-[0.95]">
           {wedding.bride} <span className="italic text-champagne">&amp;</span><br className="sm:hidden" /> {wedding.groom}
         </h1>
         <p className="text-on-image mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
         <div className="hairline w-32 mx-auto my-6" />
-        <p className="text-on-image text-sm font-medium tracking-[0.2em] uppercase">{displayedDate}</p>
+        <p className="text-on-image text-base md:text-lg font-semibold tracking-[0.2em] uppercase">{displayedDate}</p>
         <p className="text-on-image text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
         {wedding.hashtag && <p className="text-champagne font-serif italic text-lg md:text-xl mt-3 tracking-wide">{wedding.hashtag}</p>}
+        {wedding.hashtagTagline && <p className="text-on-image font-serif italic text-base mt-1">{wedding.hashtagTagline}</p>}
         {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
         <a href="#celebrations" className="mt-10 inline-flex items-center gap-2 h-12 px-8 rounded-full bg-ivory text-forest text-sm tracking-wide [text-shadow:none] hover:opacity-90 transition">
           Explore Our Wedding <ChevronDown className="h-4 w-4" />
@@ -79,29 +79,6 @@ export function Hero() {
 
 function Botanical({ className = "" }: { className?: string }) {
   return <img src={botanical} alt="" aria-hidden className={`pointer-events-none select-none ${className}`} loading="lazy" width={1024} height={1024} />;
-}
-
-// Calendar entries need a duration; assume three hours when only a start time is set.
-const calEnd = (e: WeddingEvent) =>
-  e.end === e.start ? new Date(new Date(e.start).getTime() + 3 * 3600000).toISOString() : e.end;
-
-function icsFor(e: WeddingEvent) {
-  const f = (s: string) => new Date(s).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  const body = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//NP Wedding//EN", "BEGIN:VEVENT",
-    `UID:${e.id}@np-wedding`, `DTSTAMP:${f(new Date().toISOString())}`, `DTSTART:${f(e.start)}`, `DTEND:${f(calEnd(e))}`,
-    `SUMMARY:${e.name} — ${coupleNames}`, `LOCATION:${clean(e.venue)}, ${clean(e.address)}`, `DESCRIPTION:${e.description}`,
-    "END:VEVENT", "END:VCALENDAR",
-  ].join("\r\n");
-  const url = URL.createObjectURL(new Blob([body], { type: "text/calendar" }));
-  const a = document.createElement("a"); a.href = url; a.download = `${e.id}.ics`; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
-function gcal(e: WeddingEvent) {
-  const f = (s: string) => new Date(s).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-  const p = new URLSearchParams({ action: "TEMPLATE", text: `${e.name} — ${coupleNames}`, dates: `${f(e.start)}/${f(calEnd(e))}`, details: e.description, location: `${clean(e.venue)}, ${clean(e.address)}` });
-  return `https://calendar.google.com/calendar/render?${p}`;
 }
 
 const maps = (q: string) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}`;
@@ -133,13 +110,11 @@ export function Celebrations() {
                     <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
                     {e.dressCode && <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Attire</dt><dd>{e.dressCode}</dd></div>}
                   </dl>
-                  {(!isTBC(e.venue) && !isTBC(e.address)) || !e.timeIsPlaceholder ? (
-                    <div className="flex flex-wrap gap-2 mt-7">
-                      {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Directions</a>}
-                      {!e.timeIsPlaceholder && <a href={gcal(e)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><CalendarPlus className="h-4 w-4" /> Google Calendar</a>}
-                      {!e.timeIsPlaceholder && <button onClick={() => icsFor(e)} className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-border text-sm hover:bg-card">Apple / Outlook</button>}
+                  {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
+                    <div className="mt-7">
+                      <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Open in Google Maps</a>
                     </div>
-                  ) : null}
+                  )}
                 </div>
               </article>
             </Reveal>

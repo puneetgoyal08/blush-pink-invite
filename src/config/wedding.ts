@@ -40,7 +40,8 @@ export const wedding = {
   timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
   location: "Bathinda",
-  hashtag: "#SarvagunNiPun",
+  hashtag: "#SarvgunNiPun",
+  hashtagTagline: "A union of virtues, a lifetime of love",
   rsvpDeadline: TBC("Date to be confirmed"),
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
   // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
@@ -53,7 +54,7 @@ export const wedding = {
     {
       id: "haldi",
       name: "Haldi",
-      description: TBC("Event details to be confirmed."),
+      description: "Shagun ka noor, apno ka pyar",
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
@@ -65,18 +66,18 @@ export const wedding = {
     {
       id: "sangeet",
       name: "Sangeet",
-      description: TBC("Event details to be confirmed."),
+      description: "Jashan, junoon aur dance ka suroor",
       start: "2026-12-04T19:00:00+05:30",
       end: "2026-12-04T19:00:00+05:30",
       timeIsPlaceholder: false,
-      venue: "Sepal",
-      address: "Bathinda",
+      venue: "Hotel Sepal",
+      address: "Goniana Road, Bathinda",
       image: sangeetPhoto,
     },
     {
       id: "wedding",
       name: "Wedding",
-      description: TBC("Event details to be confirmed."),
+      description: "Varmala ke rang, taaron ki chhaon mein saat janmon ka sang",
       start: "2026-12-05T20:00:00+05:30",
       end: "2026-12-05T20:00:00+05:30",
       timeIsPlaceholder: false,
@@ -105,6 +106,12 @@ export const wedding = {
     airport: "Fly into Amritsar (ATQ), about 3.5 hours away by road; Ludhiana (LUH), about 2.5 hours; or Chandigarh (IXC), the biggest nearby airport, about 4 hours.",
     road: "Bathinda is about 320 km from Delhi, roughly 5 to 6 hours by car. Buses run from Delhi through the day and take about 6 to 7 hours.",
   },
+
+  galleryTitle: "Our Beginning",
+  galleryNote: [
+    "One of the most awaited days of our lives is finally here, and we can't imagine celebrating it without you. ❤️",
+    "You've been such a special part of our journey, and having you by our side as we begin this new chapter would mean the world to us.",
+  ],
 
   gallery: [
     { src: us1, alt: "Nidhi and Puneet hand in hand under a white floral arch, with confetti falling" },

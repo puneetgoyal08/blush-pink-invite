@@ -22,15 +22,6 @@ describe("InvitationOpener", () => {
     expect(onOpened).toHaveBeenCalledOnce();
   });
 
-  it("lets guests skip the opening animation immediately", () => {
-    const onOpened = vi.fn();
-    render(<InvitationOpener onOpened={onOpened} />);
-
-    fireEvent.click(screen.getByRole("button", { name: "Skip to the invitation" }));
-
-    expect(onOpened).toHaveBeenCalledOnce();
-  });
-
   it("closes the opener immediately when Escape is pressed", () => {
     const onOpened = vi.fn();
     render(<InvitationOpener onOpened={onOpened} />);

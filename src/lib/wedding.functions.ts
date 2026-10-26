@@ -13,7 +13,6 @@ async function ipHash() {
 
 const rsvpSchema = z.object({
   name: z.string().trim().min(2).max(100),
-  contact: z.string().trim().min(5).max(255),
   attending: z.boolean(),
   guests: z.number().int().min(0).max(10),
   events: z.array(z.string().max(40)).max(10),
@@ -33,10 +32,11 @@ export const submitRsvp = createServerFn({ method: "POST" })
       .eq("ip_hash", hash).gte("updated_at", since);
     if ((count ?? 0) >= 8) return { ok: false as const, error: "Too many submissions — please try again later." };
 
-    const contactKey = data.contact.toLowerCase().replace(/[^a-z0-9@.+]/g, "");
+    // Guests no longer give a phone or email, so a repeat RSVP under the same name updates the earlier one.
+    const contactKey = "name:" + data.name.toLowerCase().replace(/[^a-z0-9]/g, "");
     const row = {
       name: data.name,
-      contact: data.contact,
+      contact: "",
       contact_key: contactKey,
       attending: data.attending,
       guests: data.attending ? Math.max(1, data.guests) : 0,

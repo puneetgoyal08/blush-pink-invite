@@ -58,7 +58,9 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
         </div>
       ))}
       <div className="invitation-opening__content">
-        <p className="eyebrow invitation-opening__eyebrow">Together with our families</p>
+        <p id="invitation-opening-description" className="invitation-opening__description">
+          You are warmly invited to celebrate
+        </p>
         <Monogram light className="invitation-opening__monogram" />
         <h1 id="invitation-opening-title" className="invitation-opening__title" aria-label={coupleNames}>
           {coupleNames.split(" & ").map((name, index) => (
@@ -68,27 +70,16 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
             </span>
           ))}
         </h1>
-        <p id="invitation-opening-description" className="invitation-opening__description">
-          You are warmly invited to celebrate
-        </p>
 
         <button
           type="button"
           className="invitation-opening__open"
-          onClick={startOpening}
+          onClick={() => startOpening()}
           disabled={isOpening}
           aria-label={`Open ${coupleNames}'s wedding invitation`}
           autoFocus
         >
           Open the invitation <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </button>
-
-        <button
-          type="button"
-          className="invitation-opening__skip"
-          onClick={() => startOpening(false)}
-        >
-          Skip to the invitation
         </button>
         <span className="invitation-opening__ornament" aria-hidden="true">
           ❦
