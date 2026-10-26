@@ -40,7 +40,7 @@ export const wedding = {
   timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
   location: "Bathinda",
-  hashtag: "#SarvgunNiPun",
+  hashtag: "#sarvgunNiPun",
   hashtagTagline: "A union of virtues, a lifetime of love",
   rsvpDeadline: TBC("Date to be confirmed"),
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
@@ -54,7 +54,7 @@ export const wedding = {
     {
       id: "haldi",
       name: "Haldi",
-      description: "Shagun ka noor, apno ka pyar",
+      description: "Golden glow before forever begins",
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
@@ -81,8 +81,8 @@ export const wedding = {
       start: "2026-12-05T20:00:00+05:30",
       end: "2026-12-05T20:00:00+05:30",
       timeIsPlaceholder: false,
-      venue: "Sky Heights",
-      address: "Rampura Phul",
+      venue: "Sky Heights Resort",
+      address: "National Highway 7, Barnala–Bathinda Road, Rampura Phul, Punjab 151111",
       image: weddingPhoto,
     },
   ] as WeddingEvent[],
@@ -90,7 +90,7 @@ export const wedding = {
   travel: {
     venue: {
       name: "Bathinda, Punjab",
-      address: "The Haldi and Sangeet are in Bathinda. The wedding is at Sky Heights, Rampura Phul, about 30 km away.",
+      address: "The Haldi and Sangeet are in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, about 30 km away.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
     railway: {
