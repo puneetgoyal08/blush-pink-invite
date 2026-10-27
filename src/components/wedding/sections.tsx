@@ -88,8 +88,8 @@ export function Celebrations() {
                   )}
                 </div>
                 <div>
-                  <h3 className="text-4xl md:text-[2.75rem] leading-tight">{e.name}</h3>
-                  {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-xl md:text-2xl">{e.description}</p>}
+                  <h3 className="text-4xl md:text-[2.75rem] leading-[1.1]">{e.name}</h3>
+                  {!isTBC(e.description) && <p className="text-muted-foreground mt-1 font-serif italic text-xl md:text-2xl">{e.description}</p>}
                   <p className="mt-4 flex items-center gap-2 text-sm md:text-base font-medium uppercase tracking-[0.14em] text-forest">
                     <CalendarDays className="h-4 w-4 text-gold" aria-hidden />
                     {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}
