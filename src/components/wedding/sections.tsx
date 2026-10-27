@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { CalendarDays, MapPin, Plane, Train, Bus, ChevronDown } from "lucide-react";
+import { useEffect, useState, type ReactNode } from "react";
+import { MapPin, Plane, Train, Bus, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -67,7 +67,16 @@ function Botanical({ className = "" }: { className?: string }) {
   return <img src={botanical} alt="" aria-hidden className={`pointer-events-none select-none ${className}`} loading="lazy" width={1024} height={1024} />;
 }
 
-const maps = (q: string) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}`;
+function Detail({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="grid grid-cols-[6.5rem_1fr] items-baseline gap-3">
+      <dt className="text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</dt>
+      <dd className="text-base md:text-lg leading-snug">{children}</dd>
+    </div>
+  );
+}
+
+const maps =(q: string) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}`;
 
 export function Celebrations() {
   return (
@@ -90,14 +99,11 @@ export function Celebrations() {
                 <div>
                   <h3 className="text-4xl md:text-[2.75rem] leading-[1.1]">{e.name}</h3>
                   {!isTBC(e.description) && <p className="text-muted-foreground mt-1 font-serif italic text-xl md:text-2xl">{e.description}</p>}
-                  <p className="mt-4 flex items-center gap-2 text-sm md:text-base font-medium uppercase tracking-[0.14em] text-forest">
-                    <CalendarDays className="h-4 w-4 text-gold" aria-hidden />
-                    {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}
-                  </p>
-                  <dl className="mt-6 space-y-4 text-base md:text-lg">
-                    <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</dd></div>
-                    <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
-                    {e.dressCode && <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Dress code</dt><dd className="font-serif italic">{e.dressCode}</dd></div>}
+                  <dl className="mt-6 space-y-4">
+                    <Detail label="Date"><span className="font-semibold">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</span></Detail>
+                    <Detail label="Time">{e.timeIsPlaceholder ? <span className="text-muted-foreground">To be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</Detail>
+                    <Detail label="Venue"><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></Detail>
+                    {e.dressCode && <Detail label="Dress code">{e.dressCode}</Detail>}
                   </dl>
                   {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
                     <div className="mt-7">
