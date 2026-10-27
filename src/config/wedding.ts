@@ -2,8 +2,6 @@
 // Anything wrapped in TBC() is a placeholder shown with a "to be confirmed" tag.
 import heroPortrait from "@/assets/hero-portrait.jpg";
 import heroLandscape from "@/assets/hero-landscape.jpg";
-import us1 from "@/assets/us-1.jpg";
-import us2 from "@/assets/us-2.jpg";
 import us3 from "@/assets/us-3.jpg";
 import us4 from "@/assets/us-4.jpg";
 import us5 from "@/assets/us-5.jpg";
@@ -121,8 +119,6 @@ export const wedding = {
   ],
 
   gallery: [
-    { src: us1, alt: "Nidhi and Puneet hand in hand under a white floral arch, with confetti falling" },
-    { src: us2, alt: "Nidhi twirling in an olive lehenga as Puneet looks on" },
     { src: us3, alt: "Nidhi and Puneet sharing an umbrella by the pool" },
     { src: us4, alt: "Nidhi and Puneet standing together in a cafe" },
     { src: us5, alt: "Puneet holding Nidhi's hand as she twirls an umbrella in the rain" },

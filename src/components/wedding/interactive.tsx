@@ -4,9 +4,12 @@ import { ChevronLeft, ChevronRight, X, Check, Loader2 } from "lucide-react";
 import { submitRsvp } from "@/lib/wedding.functions";
 import { postRsvpToSheet } from "@/lib/rsvp-sheet";
 import { coupleNames, wedding } from "@/config/wedding";
+import botanical from "@/assets/botanical.png";
 import { Reveal, SectionHeading } from "./ui";
 
-const field = "w-full h-12 px-4 rounded-md bg-card border border-input focus:outline-none focus:ring-2 focus:ring-ring text-base";
+const POLAROID_TILT = [-4, 3, 2.5, -3];
+
+const field ="w-full h-12 px-4 rounded-md bg-card border border-input focus:outline-none focus:ring-2 focus:ring-ring text-base";
 const label = "block text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2";
 
 export function Rsvp() {
@@ -157,14 +160,25 @@ export function Gallery() {
           <p className="mt-6 italic text-muted-foreground">With love,</p>
           <p className="text-2xl md:text-3xl mt-1">{coupleNames}</p>
         </Reveal>
-        <div className="columns-2 md:columns-3 gap-3 md:gap-5 [&>*]:mb-3 md:[&>*]:mb-5">
-          {imgs.map((im, i) => (
-            <Reveal key={i} delay={(i % 3) * 100}>
-              <button onClick={() => setIdx(i)} className="block w-full overflow-hidden rounded-sm group" aria-label={`Open photo: ${im.alt}`}>
-                <img src={im.src} alt={im.alt} loading="lazy" className="w-full h-auto grayscale contrast-105 transition duration-700 group-hover:scale-105 group-hover:grayscale-0" />
-              </button>
-            </Reveal>
-          ))}
+        <div className="relative max-w-2xl mx-auto rounded-sm bg-card px-4 pt-12 pb-16 sm:px-10 sm:pt-16 sm:pb-20 shadow-[0_18px_50px_-20px_oklch(0.3_0.03_80/0.45)] ring-1 ring-gold/20">
+          <img src={botanical} alt="" aria-hidden className="pointer-events-none absolute -top-6 -right-6 w-28 sm:w-36 opacity-70 rotate-12" loading="lazy" />
+          <div className="grid grid-cols-2 gap-x-3 gap-y-0 sm:gap-x-8">
+            {imgs.map((im, i) => (
+              <Reveal key={i} delay={(i % 2) * 120} className={i >= 2 ? "-mt-4 sm:-mt-2" : ""}>
+                <div className={i % 2 ? "translate-y-10 sm:translate-y-14" : ""}>
+                <button
+                  onClick={() => setIdx(i)}
+                  style={{ transform: `rotate(${POLAROID_TILT[i % POLAROID_TILT.length]}deg)` }}
+                  className="relative block w-full bg-white p-2 pb-7 sm:p-3 sm:pb-10 shadow-[0_10px_24px_-6px_oklch(0.2_0.02_80/0.35)] transition duration-500 hover:z-10 hover:scale-[1.04] focus-visible:z-10"
+                  aria-label={`Open photo: ${im.alt}`}
+                >
+                  <span aria-hidden className="absolute -top-2 left-1/2 -translate-x-1/2 h-4 w-4 rounded-full bg-[radial-gradient(circle_at_35%_30%,#fff,#e8e2d6_55%,#b9b0a0)] shadow-[0_2px_3px_rgba(0,0,0,0.3)]" />
+                  <img src={im.src} alt={im.alt} loading="lazy" className="w-full aspect-[4/5] object-cover" />
+                </button>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
       {idx !== null && (
