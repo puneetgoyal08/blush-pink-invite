@@ -167,6 +167,10 @@ export function Closing() {
       <Reveal>
         <p className="font-serif italic text-3xl md:text-5xl text-balance">We can't wait to celebrate with you.</p>
         <p className="font-serif text-5xl md:text-7xl mt-8">{coupleNames}</p>
+        <div className="mt-6 grid sm:grid-cols-2 gap-4 sm:gap-10 max-w-2xl mx-auto">
+          <div><p className="eyebrow">Daughter of</p><p className="font-serif text-lg md:text-xl mt-1">{wedding.brideParents}</p></div>
+          <div><p className="eyebrow">Son of</p><p className="font-serif text-lg md:text-xl mt-1">{wedding.groomParents}</p></div>
+        </div>
         <div className="hairline w-24 mx-auto my-6" />
         <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">{displayedDate}</p>
         <div className="mt-10"><ShareButton /></div>
