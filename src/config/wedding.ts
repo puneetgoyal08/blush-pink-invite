@@ -39,7 +39,6 @@ export const wedding = {
   dateIsPlaceholder: false,
   timeIsPlaceholder: false,
   timezone: "Asia/Kolkata",
-  location: "Bathinda",
   hashtag: "#sarvgunNiPun",
   hashtagTagline: "A union of virtues, a lifetime of love",
   rsvpDeadline: TBC("Date to be confirmed"),
@@ -55,14 +54,14 @@ export const wedding = {
       id: "haldi",
       name: "Golden Hour",
       ceremony: "Haldi",
-      description: "Shagun ka noor, apno ka pyar",
-      start: "2026-12-03T00:00:00+05:30",
-      end: "2026-12-03T00:00:00+05:30",
-      timeIsPlaceholder: true,
-      venue: "At home",
-      address: "Barnala",
+      description: "Havan ka dastoor, haldi ka noor",
+      start: "2026-12-04T09:00:00+05:30",
+      end: "2026-12-04T09:00:00+05:30",
+      timeIsPlaceholder: false,
+      venue: "Barnala",
+      address: "",
       hideDirections: true,
-      dressCode: "Shades of yellow, bright and sunny",
+      dressCode: "Bright hues and florals",
       image: haldiPhoto,
     },
     {
@@ -96,7 +95,7 @@ export const wedding = {
   travel: {
     venue: {
       name: "Bathinda, Punjab",
-      address: "The Haldi is at home in Barnala and the Sangeet is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two.",
+      address: "The Haldi is in Barnala and the Sangeet is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
     railway: {

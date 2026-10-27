@@ -51,7 +51,6 @@ export function Hero() {
         <p className="text-on-image mt-6 text-base md:text-lg font-serif italic text-balance">{wedding.invitation}</p>
         <div className="hairline w-32 mx-auto my-6" />
         <p className="text-on-image text-base md:text-lg font-semibold tracking-[0.2em] uppercase">{displayedDate}</p>
-        <p className="text-on-image text-sm mt-1">{clean(wedding.location)}{isTBC(wedding.location) && " · details to follow"}</p>
         {wedding.hashtag && <p className="text-champagne font-serif italic text-lg md:text-xl mt-3 tracking-wide">{wedding.hashtag}</p>}
         {wedding.hashtagTagline && <p className="text-on-image font-serif italic text-base mt-1">{wedding.hashtagTagline}</p>}
         {!wedding.dateIsPlaceholder && <div className="mt-8"><Countdown compact light /></div>}
@@ -103,7 +102,7 @@ export function Celebrations() {
                   <dl className="mt-5 space-y-3">
                     <Detail label="Date"><span className="font-medium">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</span></Detail>
                     <Detail label="Time">{e.timeIsPlaceholder ? <span className="text-muted-foreground">To be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</Detail>
-                    <Detail label="Venue"><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></Detail>
+                    <Detail label="Venue"><Text value={e.venue} />{e.address && <><br /><span className="text-muted-foreground"><Text value={e.address} /></span></>}</Detail>
                     {e.dressCode && <Detail label="Dress code"><span className="italic">{e.dressCode}</span></Detail>}
                   </dl>
                   {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
