@@ -122,10 +122,6 @@ export function Celebrations() {
 
 export function Travel() {
   const t = wedding.travel;
-  const items = [
-    { icon: Plane, label: "By air", v: t.airport },
-    { icon: Bus, label: "By road", v: t.road },
-  ];
   return (
     <section id="travel" className="py-24 md:py-32 px-6 bg-secondary/50">
       <div className="max-w-5xl mx-auto">
@@ -134,6 +130,11 @@ export function Travel() {
           <h3 className="text-3xl"><Text value={t.venue.name} /></h3>
           <p className="text-muted-foreground mt-2 max-w-xl mx-auto"><Text value={t.venue.address} /></p>
           <a href={t.venue.mapUrl ?? maps(clean(t.venue.name))} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
+        </Reveal>
+        <Reveal className="mb-12 md:mb-14 max-w-3xl mx-auto text-center md:text-left">
+          <Plane className="h-5 w-5 text-gold mx-auto md:mx-0" />
+          <p className="eyebrow mt-3">By air</p>
+          <p className="mt-2 text-sm leading-relaxed"><Text value={t.airport} /></p>
         </Reveal>
         <Reveal className="mb-12 md:mb-14 max-w-3xl mx-auto text-center md:text-left">
           <Train className="h-5 w-5 text-gold mx-auto md:mx-0" />
@@ -149,15 +150,11 @@ export function Travel() {
           </ul>
           <p className="mt-4 text-sm text-muted-foreground">{t.railway.outro}</p>
         </Reveal>
-        <div className="grid md:grid-cols-2 gap-10 md:gap-8 max-w-3xl mx-auto">
-          {items.map(({ icon: I, label, v }) => (
-            <Reveal key={label} className="text-center md:text-left">
-              <I className="h-5 w-5 text-gold mx-auto md:mx-0" />
-              <p className="eyebrow mt-3">{label}</p>
-              <p className="mt-2 text-sm leading-relaxed"><Text value={v} /></p>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="max-w-3xl mx-auto text-center md:text-left">
+          <Bus className="h-5 w-5 text-gold mx-auto md:mx-0" />
+          <p className="eyebrow mt-3">By road</p>
+          <p className="mt-2 text-sm leading-relaxed"><Text value={t.road} /></p>
+        </Reveal>
       </div>
     </section>
   );

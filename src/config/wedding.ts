@@ -109,7 +109,7 @@ export const wedding = {
       ],
       outro: "Please check current timings on IRCTC or NTES before booking.",
     },
-    airport: "Fly into Ludhiana (LUH), the closest, about 1.5 hours away by road; Chandigarh (IXC), the biggest nearby airport, about 3 hours; or Amritsar (ATQ), about 4 hours.",
+    airport: "Fly into Chandigarh (IXC), the biggest nearby airport, about 3 hours away by road; or Amritsar (ATQ), about 4 hours.",
     road: "Barnala is about 270 km from Delhi, roughly 5 hours by car. Buses run from Delhi through the day and take about 6 hours.",
   },
 
