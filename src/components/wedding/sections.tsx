@@ -70,8 +70,8 @@ function Botanical({ className = "" }: { className?: string }) {
 function Detail({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="grid grid-cols-[6.5rem_1fr] items-baseline gap-3">
-      <dt className="text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</dt>
-      <dd className="text-base md:text-lg leading-snug">{children}</dd>
+      <dt className="eyebrow tracking-[0.2em]">{label}</dt>
+      <dd className="font-serif text-xl md:text-[1.35rem] leading-snug">{children}</dd>
     </div>
   );
 }
@@ -99,11 +99,12 @@ export function Celebrations() {
                 <div>
                   <h3 className="text-4xl md:text-[2.75rem] leading-[1.1]">{e.name}</h3>
                   {!isTBC(e.description) && <p className="text-muted-foreground mt-1 font-serif italic text-xl md:text-2xl">{e.description}</p>}
-                  <dl className="mt-6 space-y-4">
-                    <Detail label="Date"><span className="font-semibold">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</span></Detail>
+                  <div className="mt-5 h-px w-12 bg-gold/60" />
+                  <dl className="mt-5 space-y-3">
+                    <Detail label="Date"><span className="font-medium">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</span></Detail>
                     <Detail label="Time">{e.timeIsPlaceholder ? <span className="text-muted-foreground">To be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</Detail>
                     <Detail label="Venue"><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></Detail>
-                    {e.dressCode && <Detail label="Dress code">{e.dressCode}</Detail>}
+                    {e.dressCode && <Detail label="Dress code"><span className="italic">{e.dressCode}</span></Detail>}
                   </dl>
                   {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
                     <div className="mt-7">
