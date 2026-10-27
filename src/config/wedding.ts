@@ -94,7 +94,7 @@ export const wedding = {
 
   travel: {
     venue: {
-      name: "Bathinda, Punjab",
+      name: "Barnala, Punjab",
       address: "The Haldi is in Barnala and the Sangeet is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
