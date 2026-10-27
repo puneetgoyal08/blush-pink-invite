@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MapPin, Plane, Train, Bus, ChevronDown } from "lucide-react";
+import { CalendarDays, MapPin, Plane, Train, Bus, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -88,8 +88,12 @@ export function Celebrations() {
                   )}
                 </div>
                 <div>
-                  <p className="eyebrow text-xs md:text-sm">{e.ceremony} · {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</p>
-                  <h3 className="text-5xl mt-2">{e.name}</h3>
+                  <p className="eyebrow text-xs md:text-sm">{e.ceremony}</p>
+                  <h3 className="text-4xl md:text-[2.75rem] leading-tight mt-2">{e.name}</h3>
+                  <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold bg-gold/15 px-4 py-1.5 text-sm md:text-base font-semibold uppercase tracking-[0.12em] text-forest">
+                    <CalendarDays className="h-4 w-4 text-gold" aria-hidden />
+                    {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}
+                  </p>
                   {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-xl md:text-2xl">{e.description}</p>}
                   <dl className="mt-6 space-y-4 text-base md:text-lg">
                     <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</dd></div>
