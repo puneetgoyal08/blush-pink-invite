@@ -12,17 +12,16 @@ export type SheetRsvp = {
   website: string; // honeypot, dropped by the script when filled
 };
 
-// Posts an RSVP to the Google Apps Script web app behind wedding.rsvpSheetUrl.
-// Apps Script doesn't send CORS headers, so this is a no-cors request: the response
-// can't be read, and resolving only means the request reached Google.
-// Returns false when no sheet is configured.
+// Posts an RSVP to the Google Apps Script web app behind wedding.rsvpSheetUrl and
+// returns true only when the script confirms it saved the row ("ok").
+// A text/plain POST avoids a CORS preflight, and an Apps Script web app shared with
+// "Anyone" answers with Access-Control-Allow-Origin: *, so the reply is readable.
 export async function postRsvpToSheet(rsvp: SheetRsvp): Promise<boolean> {
   if (!wedding.rsvpSheetUrl) return false;
-  await fetch(wedding.rsvpSheetUrl, {
+  const res = await fetch(wedding.rsvpSheetUrl, {
     method: "POST",
-    mode: "no-cors",
     headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify(rsvp),
   });
-  return true;
+  return res.ok && (await res.text()).trim() === "ok";
 }

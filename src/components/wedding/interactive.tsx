@@ -52,7 +52,7 @@ export function Rsvp() {
     if (r?.ok || (sheet.status === "fulfilled" && sheet.value)) {
       setResult({ attending: !!attending, updated: !!(r?.ok && r.updated) }); setStatus("done");
     } else {
-      setServerError(r && !r.ok ? r.error : "Something went wrong. Please check your details and try again."); setStatus("error");
+      setServerError(r && !r.ok ? r.error : `We couldn't save your RSVP just now. Please try again in a moment, or message ${coupleNames} directly.`); setStatus("error");
     }
   }
 
