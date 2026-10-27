@@ -45,7 +45,7 @@ export const wedding = {
   rsvpDeadline: TBC("Date to be confirmed"),
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
   // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
-  rsvpSheetUrl: "https://script.google.com/macros/s/AKfycbz-iWZOoQJaZJS094Af-TgwhEqPUCFYQhebiXyLF0CkLqrP_MU7DBrYQUD85haq5jNL_A/exec",
+  rsvpSheetUrl: "https://script.google.com/macros/s/AKfycbwCL5qN3ovunb5dtbxFRoEUYB1df5OS75XxeNi4mb6nQejh76YKMNfd7BkElQ2lat8Zow/exec",
   heroImage: heroPortrait,
   heroImageLandscape: heroLandscape,
   musicUrl: music, // Jashn-E-Bahaaraa, 0:24–1:30, looped
