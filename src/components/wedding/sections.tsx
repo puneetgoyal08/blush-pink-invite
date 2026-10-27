@@ -5,13 +5,12 @@ import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } fro
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
 import { Countdown } from "./countdown";
 import { ShareButton } from "./share";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const fullDate = formatDate(wedding.date, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 const displayedDate = wedding.dateIsPlaceholder ? "Date to be announced" : fullDate;
 
 const NAV = [
-  ["celebrations", "Events"], ["travel", "Travel"], ["rsvp", "RSVP"], ["gallery", "Gallery"], ["faq", "FAQ"],
+  ["celebrations", "Events"], ["travel", "Travel"], ["rsvp", "RSVP"], ["gallery", "Gallery"],
 ] as const;
 
 export function Nav() {
@@ -102,17 +101,17 @@ export function Celebrations() {
                   )}
                 </div>
                 <div>
-                  <p className="eyebrow">{formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</p>
+                  <p className="eyebrow text-xs md:text-sm">{e.ceremony} · {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}</p>
                   <h3 className="text-5xl mt-2">{e.name}</h3>
-                  {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-lg">{e.description}</p>}
-                  <dl className="mt-6 space-y-3 text-sm">
-                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</dd></div>
-                    <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
-                    {e.dressCode && <div className="flex gap-3"><dt className="w-20 shrink-0 text-muted-foreground uppercase tracking-widest text-[0.65rem] pt-0.5">Attire</dt><dd>{e.dressCode}</dd></div>}
+                  {!isTBC(e.description) && <p className="text-muted-foreground mt-3 font-serif italic text-xl md:text-2xl">{e.description}</p>}
+                  <dl className="mt-6 space-y-4 text-base md:text-lg">
+                    <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Time</dt><dd>{e.timeIsPlaceholder ? <span className="placeholder-tag">to be confirmed</span> : <>{formatDate(e.start, { hour: "numeric", minute: "2-digit" })}{e.end === e.start ? " onwards" : <> – {formatDate(e.end, { hour: "numeric", minute: "2-digit" })}</>}</>}</dd></div>
+                    <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Venue</dt><dd><Text value={e.venue} /><br /><span className="text-muted-foreground"><Text value={e.address} /></span></dd></div>
+                    {e.dressCode && <div className="flex gap-3"><dt className="w-24 shrink-0 text-muted-foreground uppercase tracking-widest text-xs pt-1.5">Dress code</dt><dd className="font-serif italic">{e.dressCode}</dd></div>}
                   </dl>
                   {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
                     <div className="mt-7">
-                      <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-11 px-5 rounded-full border border-gold text-sm hover:bg-card"><MapPin className="h-4 w-4" /> Open in Google Maps</a>
+                      <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-gold text-base hover:bg-card"><MapPin className="h-4 w-4" /> Open in Google Maps</a>
                     </div>
                   )}
                 </div>
@@ -163,26 +162,6 @@ export function Travel() {
             </Reveal>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function Faq() {
-  return (
-    <section id="faq" className="py-24 md:py-32 px-6">
-      <div className="max-w-2xl mx-auto">
-        <SectionHeading eyebrow="Good to know" title="Questions & answers" />
-        <Reveal>
-          <Accordion type="single" collapsible>
-            {wedding.faq.map((f, i) => (
-              <AccordionItem key={i} value={`f${i}`}>
-                <AccordionTrigger className="font-serif text-xl text-left hover:no-underline py-5">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground"><Text value={f.a} /></AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
       </div>
     </section>
   );

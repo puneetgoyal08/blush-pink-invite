@@ -20,6 +20,7 @@ export const clean = (s?: string) => (s ?? "").replace(TBC_PREFIX, "");
 export type WeddingEvent = {
   id: string;
   name: string;
+  ceremony: string; // traditional name, shown as a small label and used in RSVPs
   description: string;
   start: string; // ISO with timezone offset
   end: string; // same as start when no end time is set; shown as "onwards"
@@ -53,7 +54,8 @@ export const wedding = {
   events: [
     {
       id: "haldi",
-      name: "Haldi",
+      name: "Golden Hour",
+      ceremony: "Haldi",
       description: "Shagun ka noor, apno ka pyar",
       start: "2026-12-03T00:00:00+05:30",
       end: "2026-12-03T00:00:00+05:30",
@@ -61,28 +63,33 @@ export const wedding = {
       venue: "At home",
       address: "Bathinda",
       hideDirections: true,
+      dressCode: "Shades of yellow, bright and sunny",
       image: haldiPhoto,
     },
     {
       id: "sangeet",
-      name: "Sangeet",
+      name: "An Evening of Music",
+      ceremony: "Sangeet",
       description: "Jashan, junoon aur dance ka suroor",
       start: "2026-12-04T19:00:00+05:30",
       end: "2026-12-04T19:00:00+05:30",
       timeIsPlaceholder: false,
       venue: "Hotel Sepal",
-      address: "Goniana Road, Bathinda",
+      address: "Goniana Road, Bathinda, Punjab 151001",
+      dressCode: "Festive glam or Indo-western, dress to dance",
       image: sangeetPhoto,
     },
     {
       id: "wedding",
-      name: "Wedding",
+      name: "The Big Day",
+      ceremony: "Wedding",
       description: "Varmala ke rang, taaron ki chhaon mein saat janmon ka sang",
       start: "2026-12-05T20:00:00+05:30",
       end: "2026-12-05T20:00:00+05:30",
       timeIsPlaceholder: false,
       venue: "Sky Heights Resort",
       address: "National Highway 7, Barnala–Bathinda Road, Rampura Phul, Punjab 151111",
+      dressCode: "Traditional Indian, formal",
       image: weddingPhoto,
     },
   ] as WeddingEvent[],
@@ -120,14 +127,6 @@ export const wedding = {
     { src: us4, alt: "Nidhi and Puneet standing together in a cafe" },
     { src: us5, alt: "Puneet holding Nidhi's hand as she twirls an umbrella in the rain" },
     { src: us6, alt: "Nidhi and Puneet at a candlelit birthday dinner" },
-  ],
-
-  faq: [
-    {
-      q: "What should I wear?",
-      a: "Indian ethnic wear is perfect throughout! For the Haldi, bright yellows work beautifully. For the Sangeet, dress to dance — festive, glam Indo-western is a great fit. For the Wedding, traditional formal attire is ideal.",
-    },
-    { q: "What time should I arrive?", a: TBC("Arrival guidance for each event.") },
   ],
 };
 

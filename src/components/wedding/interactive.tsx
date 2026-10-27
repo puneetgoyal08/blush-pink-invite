@@ -37,7 +37,7 @@ export function Rsvp() {
     const [sheet, server] = await Promise.allSettled([
       postRsvpToSheet({
         name, contact: "", attending: !!attending, guests: attending ? guests : 0,
-        events: attending ? events.map((id) => wedding.events.find((x) => x.id === id)?.name ?? id).join(", ") : "",
+        events: attending ? events.map((id) => wedding.events.find((x) => x.id === id)?.ceremony ?? id).join(", ") : "",
         arrival: attending ? arrival : "", mode: attending ? mode : "", message, website,
       }),
       send({ data: {
@@ -97,7 +97,7 @@ export function Rsvp() {
                       const on = events.includes(e.id);
                       return (
                         <button type="button" key={e.id} aria-pressed={on} onClick={() => setEvents(on ? events.filter((x) => x !== e.id) : [...events, e.id])}
-                          className={`h-11 px-4 rounded-full border text-sm transition ${on ? "bg-sage/40 border-sage" : "bg-card border-input"}`}>{on && "✓ "}{e.name}</button>
+                          className={`h-11 px-4 rounded-full border text-sm transition ${on ? "bg-sage/40 border-sage" : "bg-card border-input"}`}>{on && "✓ "}{e.ceremony}</button>
                       );
                     })}
                   </div>

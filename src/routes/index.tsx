@@ -4,7 +4,6 @@ import {
   Hero,
   Celebrations,
   Travel,
-  Faq,
   Closing,
 } from "@/components/wedding/sections";
 import { Rsvp, Gallery } from "@/components/wedding/interactive";
@@ -45,7 +44,6 @@ function Index() {
         <Travel />
         <Rsvp />
         <Gallery />
-        <Faq />
         <Closing />
         <ShareButton variant="float" />
       </div>
