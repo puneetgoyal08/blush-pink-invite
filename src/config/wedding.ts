@@ -95,21 +95,20 @@ export const wedding = {
   travel: {
     venue: {
       name: "Barnala, Punjab",
-      address: "The Haldi is in Barnala and the Sangeet is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two.",
+      address: "The Haldi event is in Barnala and the Sangeet event is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two cities.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
     railway: {
-      intro: "Bathinda Junction (BTI) is about 5 hours from Delhi, with several direct trains every day:",
+      intro: "Barnala (BNN) is about 4.5 to 6.5 hours from Delhi, with direct trains every day:",
       trains: [
-        { no: "20409", name: "Delhi Cantt – Bathinda SF Express", note: "morning, about 5 hrs" },
-        { no: "12481", name: "Delhi – Sri Ganganagar Intercity", note: "afternoon, about 5 hrs" },
-        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "overnight, about 6 hrs" },
-        { no: "14731", name: "Kisan Express (Delhi – Bathinda)", note: "about 7 hrs" },
+        { no: "26461", name: "Delhi – Firozpur Vande Bharat Express", note: "afternoon, about 4.5 hrs, not on Wednesdays" },
+        { no: "14507", name: "Delhi – Fazilka Express", note: "afternoon, about 6.5 hrs" },
+        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "overnight, reaches Barnala around 3:30 am" },
       ],
       outro: "Please check current timings on IRCTC or NTES before booking.",
     },
-    airport: "Fly into Amritsar (ATQ), about 3.5 hours away by road; Ludhiana (LUH), about 2.5 hours; or Chandigarh (IXC), the biggest nearby airport, about 4 hours.",
-    road: "Bathinda is about 320 km from Delhi, roughly 5 to 6 hours by car. Buses run from Delhi through the day and take about 6 to 7 hours.",
+    airport: "Fly into Ludhiana (LUH), the closest, about 1.5 hours away by road; Chandigarh (IXC), the biggest nearby airport, about 3 hours; or Amritsar (ATQ), about 4 hours.",
+    road: "Barnala is about 270 km from Delhi, roughly 5 hours by car. Buses run from Delhi through the day and take about 6 hours.",
   },
 
   galleryTitle: "Our Beginning",
