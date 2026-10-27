@@ -27,6 +27,7 @@ export type WeddingEvent = {
   venue: string;
   address: string;
   hideDirections?: boolean; // e.g. a private home with no map pin yet
+  mapUrl?: string; // a shared Google Maps pin, used instead of searching venue + address
   dressCode?: string;
   image?: string;
 };
@@ -60,7 +61,7 @@ export const wedding = {
       timeIsPlaceholder: false,
       venue: "Barnala",
       address: "",
-      hideDirections: true,
+      mapUrl: "https://maps.app.goo.gl/YbXkcHrfL2kvDYZX6",
       dressCode: "Bright hues and florals",
       image: haldiPhoto,
     },
@@ -95,6 +96,7 @@ export const wedding = {
   travel: {
     venue: {
       name: "Barnala, Punjab",
+      mapUrl: "https://maps.app.goo.gl/YbXkcHrfL2kvDYZX6",
       address: "The Haldi event is in Barnala and the Sangeet event is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two cities.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.

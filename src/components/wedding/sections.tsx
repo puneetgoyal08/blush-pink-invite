@@ -107,7 +107,7 @@ export function Celebrations() {
                   </dl>
                   {!isTBC(e.venue) && !isTBC(e.address) && !e.hideDirections && (
                     <div className="mt-7">
-                      <a href={maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-gold text-base hover:bg-card"><MapPin className="h-4 w-4" /> Open in Google Maps</a>
+                      <a href={e.mapUrl ?? maps(`${clean(e.venue)}, ${clean(e.address)}`)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 h-12 px-6 rounded-full border border-gold text-base hover:bg-card"><MapPin className="h-4 w-4" /> Open in Google Maps</a>
                     </div>
                   )}
                 </div>
@@ -133,7 +133,7 @@ export function Travel() {
         <Reveal className="text-center mb-16">
           <h3 className="text-3xl"><Text value={t.venue.name} /></h3>
           <p className="text-muted-foreground mt-2 max-w-xl mx-auto"><Text value={t.venue.address} /></p>
-          <a href={maps(clean(t.venue.name))} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
+          <a href={t.venue.mapUrl ?? maps(clean(t.venue.name))} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
         </Reveal>
         <Reveal className="mb-12 md:mb-14 max-w-3xl mx-auto text-center md:text-left">
           <Train className="h-5 w-5 text-gold mx-auto md:mx-0" />
