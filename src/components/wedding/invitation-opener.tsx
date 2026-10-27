@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { coupleNames } from "@/config/wedding";
 import { Monogram } from "./ui";
+import { startMusic } from "./music";
 import { ArrowRight } from "lucide-react";
 import doorsLandscape from "@/assets/opener-landscape.jpg";
 import doorsPortrait from "@/assets/opener-portrait.jpg";
@@ -35,7 +36,7 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") startOpening(false);
+      if (event.key === "Escape") { startMusic(); startOpening(false); }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -74,7 +75,7 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
         <button
           type="button"
           className="invitation-opening__open"
-          onClick={() => startOpening()}
+          onClick={() => { startMusic(); startOpening(); }}
           disabled={isOpening}
           aria-label={`Open ${coupleNames}'s wedding invitation`}
           autoFocus

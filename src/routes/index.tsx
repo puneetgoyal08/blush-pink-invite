@@ -9,6 +9,7 @@ import {
 import { Rsvp, Gallery } from "@/components/wedding/interactive";
 import { ShareButton } from "@/components/wedding/share";
 import { InvitationOpener } from "@/components/wedding/invitation-opener";
+import { MusicToggle } from "@/components/wedding/music";
 import { useState } from "react";
 
 const title = "Nidhi & Puneet — Wedding Invitation";
@@ -46,6 +47,7 @@ function Index() {
         <Gallery />
         <Closing />
         <ShareButton variant="float" />
+        <MusicToggle />
       </div>
     </main>
   );

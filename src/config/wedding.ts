@@ -2,6 +2,7 @@
 // Anything wrapped in TBC() is a placeholder shown with a "to be confirmed" tag.
 import heroPortrait from "@/assets/hero-portrait.jpg";
 import heroLandscape from "@/assets/hero-landscape.jpg";
+import music from "@/assets/music.m4a";
 import us3 from "@/assets/us-3.jpg";
 import us4 from "@/assets/us-4.jpg";
 import us5 from "@/assets/us-5.jpg";
@@ -47,7 +48,7 @@ export const wedding = {
   rsvpSheetUrl: "https://script.google.com/macros/s/AKfycbz-iWZOoQJaZJS094Af-TgwhEqPUCFYQhebiXyLF0CkLqrP_MU7DBrYQUD85haq5jNL_A/exec",
   heroImage: heroPortrait,
   heroImageLandscape: heroLandscape,
-  musicUrl: "", // add an mp3 URL to enable the music toggle
+  musicUrl: music, // Jashn-E-Bahaaraa, 0:24–1:30, looped
 
   events: [
     {

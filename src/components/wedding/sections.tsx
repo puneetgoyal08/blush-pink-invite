@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { MapPin, Plane, Train, Bus, Volume2, VolumeX, ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import { MapPin, Plane, Train, Bus, ChevronDown } from "lucide-react";
 import botanical from "@/assets/botanical.png";
 import { clean, coupleNames, formatDate, isTBC, wedding, type WeddingEvent } from "@/config/wedding";
 import { Monogram, Reveal, SectionHeading, Text } from "./ui";
@@ -36,14 +36,6 @@ export function Nav() {
 }
 
 export function Hero() {
-  const audio = useRef<HTMLAudioElement | null>(null);
-  const [playing, setPlaying] = useState(false);
-  function toggle() {
-    if (!wedding.musicUrl) return;
-    if (!audio.current) { audio.current = new Audio(wedding.musicUrl); audio.current.loop = true; }
-    if (playing) audio.current.pause(); else void audio.current.play();
-    setPlaying(!playing);
-  }
   return (
     <header id="top" className="relative min-h-[100svh] flex flex-col items-center justify-end overflow-hidden">
       <picture>
@@ -51,11 +43,6 @@ export function Hero() {
         <img src={wedding.heroImage} alt="A lantern-lit aisle leading to a floral mandap at night" className="absolute inset-0 h-full w-full object-cover" width={941} height={1672} fetchPriority="high" />
       </picture>
       <div className="absolute inset-0 bg-hero-overlay" />
-      {wedding.musicUrl && (
-        <button onClick={toggle} className="absolute top-5 right-5 z-10 h-11 w-11 rounded-full border border-gold/60 text-on-image flex items-center justify-center backdrop-blur-sm" aria-label={playing ? "Mute music" : "Play music"}>
-          {playing ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-        </button>
-      )}
       <div className="hero-copy relative z-10 text-center px-6 pb-16 pt-24 max-w-2xl animate-in fade-in duration-1000">
         <Monogram light className="h-20 w-20 mx-auto mb-6" />
         <h1 className="text-on-image text-6xl sm:text-7xl md:text-8xl leading-[0.95]">
