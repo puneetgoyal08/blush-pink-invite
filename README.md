@@ -1,26 +1,15 @@
-# Ivory Sage Invites
+# Nidhi's Invites
 
-Implement exactly the screenshot and nothing else
+Nidhi's copy of the wedding invite site, cloned from `ivory-sage-invites` at commit 0b2b894.
+It is not connected to Lovable; changes here don't affect the original site.
 
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://ivory-sage-invites.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d1c4835d-0b53-47a8-a7fd-68729f616c35).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Event details, venues and travel notes live in `src/config/wedding.ts`.
 
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm i --legacy-peer-deps
 npm run dev
 ```

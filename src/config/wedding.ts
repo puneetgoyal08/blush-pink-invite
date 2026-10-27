@@ -60,7 +60,7 @@ export const wedding = {
       end: "2026-12-03T00:00:00+05:30",
       timeIsPlaceholder: true,
       venue: "At home",
-      address: "Bathinda",
+      address: "Barnala",
       hideDirections: true,
       dressCode: "Shades of yellow, bright and sunny",
       image: haldiPhoto,
@@ -96,7 +96,7 @@ export const wedding = {
   travel: {
     venue: {
       name: "Bathinda, Punjab",
-      address: "The Haldi and Sangeet are in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, about 30 km away.",
+      address: "The Haldi is at home in Barnala and the Sangeet is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
     railway: {
