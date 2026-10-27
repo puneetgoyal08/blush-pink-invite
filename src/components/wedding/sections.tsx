@@ -88,8 +88,7 @@ export function Celebrations() {
                   )}
                 </div>
                 <div>
-                  <p className="eyebrow text-xs md:text-sm">{e.ceremony}</p>
-                  <h3 className="text-4xl md:text-[2.75rem] leading-tight mt-2">{e.name}</h3>
+                  <h3 className="text-4xl md:text-[2.75rem] leading-tight">{e.name}</h3>
                   <p className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold bg-gold/15 px-4 py-1.5 text-sm md:text-base font-semibold uppercase tracking-[0.12em] text-forest">
                     <CalendarDays className="h-4 w-4 text-gold" aria-hidden />
                     {formatDate(e.start, { weekday: "long", day: "numeric", month: "long" })}

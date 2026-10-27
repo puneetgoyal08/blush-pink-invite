@@ -19,7 +19,7 @@ export const clean = (s?: string) => (s ?? "").replace(TBC_PREFIX, "");
 export type WeddingEvent = {
   id: string;
   name: string;
-  ceremony: string; // traditional name, shown as a small label and used in RSVPs
+  ceremony: string; // traditional name, used in RSVPs
   description: string;
   start: string; // ISO with timezone offset
   end: string; // same as start when no end time is set; shown as "onwards"
