@@ -62,33 +62,6 @@ export function Hero() {
   );
 }
 
-function FamilyMember({ name, relation, parents }: { name: string; relation: string; parents: string }) {
-  return (
-    <div>
-      <p className="font-serif text-5xl md:text-6xl">{name}</p>
-      <p className="eyebrow mt-4">{relation}</p>
-      <p className="font-serif text-xl md:text-2xl mt-2 text-balance">{parents}</p>
-    </div>
-  );
-}
-
-// Parents' names come straight after the hero, as on a traditional printed card.
-export function Families() {
-  return (
-    <section aria-labelledby="families-heading" className="py-20 md:py-28 px-6 text-center">
-      <Reveal className="max-w-4xl mx-auto">
-        <h2 id="families-heading" className="eyebrow text-balance">With the blessings of our families</h2>
-        <div className="hairline w-24 mx-auto mt-6 mb-12" />
-        <div className="grid md:grid-cols-[1fr_auto_1fr] items-center gap-8 md:gap-12">
-          <FamilyMember name={wedding.bride} relation="Daughter of" parents={wedding.brideParents} />
-          <span aria-hidden className="font-serif italic text-5xl text-gold">&amp;</span>
-          <FamilyMember name={wedding.groom} relation="Son of" parents={wedding.groomParents} />
-        </div>
-      </Reveal>
-    </section>
-  );
-}
-
 function Botanical({ className = "" }: { className?: string }) {
   return <img src={botanical} alt="" aria-hidden className={`pointer-events-none select-none ${className}`} loading="lazy" width={1024} height={1024} />;
 }
