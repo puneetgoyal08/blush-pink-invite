@@ -62,6 +62,33 @@ export function Hero() {
   );
 }
 
+function FamilyMember({ name, relation, parents }: { name: string; relation: string; parents: string }) {
+  return (
+    <div>
+      <p className="font-serif text-5xl md:text-6xl">{name}</p>
+      <p className="eyebrow mt-4">{relation}</p>
+      <p className="font-serif text-xl md:text-2xl mt-2 text-balance">{parents}</p>
+    </div>
+  );
+}
+
+// Parents' names come straight after the hero, as on a traditional printed card.
+export function Families() {
+  return (
+    <section aria-labelledby="families-heading" className="py-20 md:py-28 px-6 text-center">
+      <Reveal className="max-w-4xl mx-auto">
+        <h2 id="families-heading" className="eyebrow text-balance">With the blessings of our families</h2>
+        <div className="hairline w-24 mx-auto mt-6 mb-12" />
+        <div className="grid md:grid-cols-[1fr_auto_1fr] items-center gap-8 md:gap-12">
+          <FamilyMember name={wedding.bride} relation="Daughter of" parents={wedding.brideParents} />
+          <span aria-hidden className="font-serif italic text-5xl text-gold">&amp;</span>
+          <FamilyMember name={wedding.groom} relation="Son of" parents={wedding.groomParents} />
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
 function Botanical({ className = "" }: { className?: string }) {
   return <img src={botanical} alt="" aria-hidden className={`pointer-events-none select-none ${className}`} loading="lazy" width={1024} height={1024} />;
 }
@@ -167,10 +194,6 @@ export function Closing() {
       <Reveal>
         <p className="font-serif italic text-3xl md:text-5xl text-balance">We can't wait to celebrate with you.</p>
         <p className="font-serif text-5xl md:text-7xl mt-8">{coupleNames}</p>
-        <div className="mt-6 grid sm:grid-cols-2 gap-4 sm:gap-10 max-w-2xl mx-auto">
-          <div><p className="eyebrow">Daughter of</p><p className="font-serif text-lg md:text-xl mt-1">{wedding.brideParents}</p></div>
-          <div><p className="eyebrow">Son of</p><p className="font-serif text-lg md:text-xl mt-1">{wedding.groomParents}</p></div>
-        </div>
         <div className="hairline w-24 mx-auto my-6" />
         <p className="text-sm tracking-[0.2em] uppercase text-muted-foreground">{displayedDate}</p>
         <div className="mt-10"><ShareButton /></div>

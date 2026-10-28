@@ -35,8 +35,8 @@ export type WeddingEvent = {
 export const wedding = {
   bride: "Nidhi",
   groom: "Puneet",
-  brideParents: "Parveen Kumar Bansal & Pooja Bansal",
-  groomParents: "Harcharan Dass Goyal & Suman Goyal",
+  brideParents: "Pooja Bansal & Parveen Kumar Bansal",
+  groomParents: "Suman Goyal & Harcharan Dass Goyal",
   invitation: "Together with our families, we invite you to celebrate our wedding.",
   date: "2026-12-05T20:00:00+05:30",
   dateIsPlaceholder: false,
