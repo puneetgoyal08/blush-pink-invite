@@ -155,7 +155,6 @@ export function Travel() {
         <SectionHeading eyebrow="Venue & travel" title="Finding your way to us" />
         <Reveal className="text-center mb-16">
           <h3 className="text-3xl"><Text value={t.venue.name} /></h3>
-          <p className="text-muted-foreground mt-2 max-w-xl mx-auto"><Text value={t.venue.address} /></p>
           <a href={t.venue.mapUrl ?? maps(clean(t.venue.name))} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-2 h-11 px-6 rounded-full bg-primary text-primary-foreground text-sm"><MapPin className="h-4 w-4" /> Open in Maps</a>
         </Reveal>
         <Reveal className="mb-8 max-w-3xl mx-auto text-center md:text-left">

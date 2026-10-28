@@ -99,26 +99,25 @@ export const wedding = {
     venue: {
       name: "Barnala, Punjab",
       mapUrl: "https://maps.app.goo.gl/YbXkcHrfL2kvDYZX6",
-      address: "The Haldi event is in Barnala and the Sangeet event is in Bathinda. The wedding is at Sky Heights Resort, Rampura Phul, between the two cities.",
     },
     // Train timings change; guests are pointed to IRCTC / NTES for the current schedule.
     railway: {
-      intro: "Barnala (BNN) is about 4.5 to 6.5 hours from Delhi, with direct trains every day:",
+      intro: "Barnala (BNN) has direct trains from Delhi every day:",
       trains: [
-        { no: "26461", name: "Delhi – Firozpur Vande Bharat Express", note: "afternoon, about 4.5 hrs, not on Wednesdays" },
-        { no: "14507", name: "Delhi – Fazilka Express", note: "afternoon, about 6.5 hrs" },
-        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "overnight, reaches Barnala around 3:30 am" },
+        { no: "14507", name: "Delhi – Fazilka Express", note: "Leaves Old Delhi at 12:50 pm, reaches Barnala at 7:20 pm" },
+        { no: "26461", name: "Delhi – Firozpur Vande Bharat Express", note: "Leaves Old Delhi at 4:00 pm, reaches Barnala at 8:20 pm (not on Wednesdays)" },
+        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "Leaves Delhi Sarai Rohilla at 10:45 pm, reaches Barnala at 3:26 am" },
       ],
       outro: "Please check current timings on IRCTC or NTES before booking.",
     },
-    airport: "Fly into Chandigarh (IXC), the biggest nearby airport, about 3 hours away by road; or Amritsar (ATQ), about 4 hours.",
-    road: "Barnala is about 270 km from Delhi, roughly 5 hours by car. Buses run from Delhi through the day and take about 6 hours.",
+    airport: "Fly into Chandigarh (IXC), the biggest nearby airport, about 3 hours away by road.",
+    road: "Barnala is about 270 km from Delhi, roughly 5 hours by car.",
   },
 
   galleryTitle: "Our Beginning",
   galleryNote: [
     "One of the most awaited days of our lives is finally here, and we can't imagine celebrating it without you. ❤️",
-    "You've been such a special part of our journey, and having you by our side as we begin this new chapter would mean the world to us.",
+    "You've been such a special part of our lives, and having you by our side as we begin this new chapter would mean the world to us.",
   ],
 
   gallery: [
