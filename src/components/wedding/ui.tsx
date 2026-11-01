@@ -35,9 +35,9 @@ export function Monogram({ className = "", light = false }: { className?: string
     <svg viewBox="0 0 120 120" className={className} aria-label={`${wedding.bride[0]} and ${wedding.groom[0]} monogram`} role="img">
       <circle cx="60" cy="60" r="56" fill="none" stroke="currentColor" strokeWidth="0.6" className="text-gold" />
       <circle cx="60" cy="60" r="51" fill="none" stroke="currentColor" strokeWidth="0.4" strokeDasharray="1 3" className="text-gold" />
-      <text x="38" y="72" fontFamily="Cormorant Garamond, serif" fontSize="38" fontStyle="italic" fill="currentColor" className={light ? "text-on-image" : "text-forest"}>N</text>
-      <text x="56" y="66" fontFamily="Cormorant Garamond, serif" fontSize="16" fill="currentColor" className="text-gold">&amp;</text>
-      <text x="66" y="80" fontFamily="Cormorant Garamond, serif" fontSize="38" fontStyle="italic" fill="currentColor" className={light ? "text-on-image" : "text-forest"}>P</text>
+      <text x="30.5" y="71.5" fontFamily="Cormorant Garamond, serif" fontSize="38" fontStyle="italic" fill="currentColor" className={light ? "text-on-image" : "text-forest"}>N</text>
+      <text x="56" y="65.5" fontFamily="Cormorant Garamond, serif" fontSize="18" fill="currentColor" className="text-gold">&amp;</text>
+      <text x="69" y="71.5" fontFamily="Cormorant Garamond, serif" fontSize="39" fontStyle="italic" fill="currentColor" className={light ? "text-on-image" : "text-forest"}>P</text>
     </svg>
   );
 }
