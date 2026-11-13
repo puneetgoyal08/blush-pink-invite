@@ -8,7 +8,10 @@ async function ipHash() {
     getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim() ||
     "unknown";
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("np-wedding:" + ip));
-  return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, "0")).join("").slice(0, 32);
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("")
+    .slice(0, 32);
 }
 
 const rsvpSchema = z.object({
@@ -28,9 +31,12 @@ export const submitRsvp = createServerFn({ method: "POST" })
     const hash = await ipHash();
     const since = new Date(Date.now() - 10 * 60 * 1000).toISOString();
     const { count } = await supabaseAdmin
-      .from("rsvps").select("id", { count: "exact", head: true })
-      .eq("ip_hash", hash).gte("updated_at", since);
-    if ((count ?? 0) >= 8) return { ok: false as const, error: "Too many submissions — please try again later." };
+      .from("rsvps")
+      .select("id", { count: "exact", head: true })
+      .eq("ip_hash", hash)
+      .gte("updated_at", since);
+    if ((count ?? 0) >= 8)
+      return { ok: false as const, error: "Too many submissions — please try again later." };
 
     // Guests no longer give a phone or email, so a repeat RSVP under the same name updates the earlier one.
     const contactKey = "name:" + data.name.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -47,7 +53,11 @@ export const submitRsvp = createServerFn({ method: "POST" })
       ip_hash: hash,
       updated_at: new Date().toISOString(),
     };
-    const { data: existing } = await supabaseAdmin.from("rsvps").select("id").eq("contact_key", contactKey).maybeSingle();
+    const { data: existing } = await supabaseAdmin
+      .from("rsvps")
+      .select("id")
+      .eq("contact_key", contactKey)
+      .maybeSingle();
     const { error } = await supabaseAdmin.from("rsvps").upsert(row, { onConflict: "contact_key" });
     if (error) {
       console.error("rsvp error", error);

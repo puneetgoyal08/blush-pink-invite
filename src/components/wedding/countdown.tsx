@@ -24,32 +24,68 @@ export function useCountdown() {
   return now === null ? null : diff(target, now);
 }
 
-export function Countdown({ compact = false, light = false }: { compact?: boolean; light?: boolean }) {
+export function Countdown({
+  compact = false,
+  light = false,
+}: {
+  compact?: boolean;
+  light?: boolean;
+}) {
   const c = useCountdown();
   const tone = light ? "text-on-image" : "text-forest";
   if (wedding.dateIsPlaceholder) {
-    return <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>The date will be announced soon.</p>;
+    return (
+      <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>
+        The date will be announced soon.
+      </p>
+    );
   }
   if (wedding.timeIsPlaceholder) {
-    return <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>The time will be announced soon.</p>;
+    return (
+      <p className={`font-serif italic ${compact ? "text-xl" : "text-2xl md:text-3xl"} ${tone}`}>
+        The time will be announced soon.
+      </p>
+    );
   }
   if (c?.past) {
-    return <p className={`font-serif italic text-2xl md:text-3xl ${tone}`}>We're married — thank you for celebrating with us.</p>;
+    return (
+      <p className={`font-serif italic text-2xl md:text-3xl ${tone}`}>
+        We're married — thank you for celebrating with us.
+      </p>
+    );
   }
   const units: [string, number | undefined][] = [
-    ["Days", c?.days], ["Hours", c?.hours], ["Minutes", c?.minutes], ["Seconds", c?.seconds],
+    ["Days", c?.days],
+    ["Hours", c?.hours],
+    ["Minutes", c?.minutes],
+    ["Seconds", c?.seconds],
   ];
   return (
-    <div className={`flex items-start justify-center ${compact ? "gap-5" : "gap-6 md:gap-14"}`} aria-live="off">
+    <div
+      className={`flex items-start justify-center ${compact ? "gap-5" : "gap-6 md:gap-14"}`}
+      aria-live="off"
+    >
       {units.map(([label, v], i) => (
         <div key={label} className="flex items-start">
           <div className="text-center">
-            <div className={`font-serif tabular-nums ${tone} ${compact ? "text-3xl" : "text-5xl md:text-7xl"}`}>
+            <div
+              className={`font-serif tabular-nums ${tone} ${compact ? "text-3xl" : "text-5xl md:text-7xl"}`}
+            >
               {v === undefined ? "—" : String(v).padStart(2, "0")}
             </div>
-            <div className={`mt-1 uppercase tracking-[0.25em] ${compact ? "text-[0.6rem]" : "text-[0.65rem] md:text-xs"} ${light ? "text-on-image" : "text-muted-foreground"}`}>{label}</div>
+            <div
+              className={`mt-1 uppercase tracking-[0.25em] ${compact ? "text-[0.6rem]" : "text-[0.65rem] md:text-xs"} ${light ? "text-on-image" : "text-muted-foreground"}`}
+            >
+              {label}
+            </div>
           </div>
-          {i < 3 && <span className={`${light ? "text-champagne" : "text-gold"} ${compact ? "ml-5 text-xl" : "ml-6 md:ml-14 text-3xl"} font-serif`}>·</span>}
+          {i < 3 && (
+            <span
+              className={`${light ? "text-champagne" : "text-gold"} ${compact ? "ml-5 text-xl" : "ml-6 md:ml-14 text-3xl"} font-serif`}
+            >
+              ·
+            </span>
+          )}
         </div>
       ))}
     </div>

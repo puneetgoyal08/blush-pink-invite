@@ -19,7 +19,9 @@ function getAudio() {
 // Browsers only allow sound after a tap, so call this from a click or key handler.
 export function startMusic() {
   if (!wedding.musicUrl) return;
-  void getAudio().play().catch(() => {});
+  void getAudio()
+    .play()
+    .catch(() => {});
 }
 
 function toggleMusic() {
@@ -30,7 +32,10 @@ function toggleMusic() {
 
 function useMusicPlaying() {
   return useSyncExternalStore(
-    (l) => { listeners.add(l); return () => listeners.delete(l); },
+    (l) => {
+      listeners.add(l);
+      return () => listeners.delete(l);
+    },
     () => !!audio && !audio.paused,
     () => false,
   );
