@@ -17,7 +17,17 @@ If you edit the script later, use **Deploy → Manage deployments → Edit → N
 ## Script
 
 ```js
-const HEADERS = ["Submitted at", "Name", "Phone or email", "Attending", "Guests", "Celebrations", "Arriving", "Travelling by", "Note"];
+const HEADERS = [
+  "Submitted at",
+  "Name",
+  "Phone or email",
+  "Attending",
+  "Guests",
+  "Celebrations",
+  "Arriving",
+  "Travelling by",
+  "Note",
+];
 
 function doPost(e) {
   const d = JSON.parse(e.postData.contents);

@@ -1,11 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Nav,
-  Hero,
-  Celebrations,
-  Travel,
-  Closing,
-} from "@/components/wedding/sections";
+import { Nav, Hero, Celebrations, Travel, Closing } from "@/components/wedding/sections";
 import { Rsvp, Gallery } from "@/components/wedding/interactive";
 import { ShareButton } from "@/components/wedding/share";
 import { InvitationOpener } from "@/components/wedding/invitation-opener";

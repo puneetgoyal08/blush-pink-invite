@@ -47,7 +47,8 @@ export const wedding = {
   rsvpDeadline: TBC("Date to be confirmed"),
   // Google Apps Script web app URL (ends in /exec) that appends each RSVP to a Google Sheet.
   // See docs/google-sheet-rsvp.md. Leave empty to skip the sheet.
-  rsvpSheetUrl: "https://script.google.com/macros/s/AKfycbxKhfmYO7b2N6YQIqI9y2FnzXKkJBD0sUyct6TxsaPXYDxI16_4TosesQLatve0xvBETw/exec",
+  rsvpSheetUrl:
+    "https://script.google.com/macros/s/AKfycbxKhfmYO7b2N6YQIqI9y2FnzXKkJBD0sUyct6TxsaPXYDxI16_4TosesQLatve0xvBETw/exec",
   heroImage: heroPortrait,
   heroImageLandscape: heroLandscape,
   musicUrl: music, // Jashn-E-Bahaaraa, 0:24–1:30, looped
@@ -104,9 +105,21 @@ export const wedding = {
     railway: {
       intro: "Barnala (BNN) has direct trains from Delhi every day:",
       trains: [
-        { no: "14507", name: "Delhi – Fazilka Express", note: "Leaves Old Delhi at 12:50 pm, reaches Barnala at 7:20 pm" },
-        { no: "26461", name: "Delhi – Firozpur Vande Bharat Express", note: "Leaves Old Delhi at 4:00 pm, reaches Barnala at 8:20 pm (not on Wednesdays)" },
-        { no: "12455", name: "Delhi Sarai Rohilla – Bikaner Express", note: "Leaves Delhi Sarai Rohilla at 10:45 pm, reaches Barnala at 3:26 am" },
+        {
+          no: "14507",
+          name: "Delhi – Fazilka Express",
+          note: "Leaves Old Delhi at 12:50 pm, reaches Barnala at 7:20 pm",
+        },
+        {
+          no: "26461",
+          name: "Delhi – Firozpur Vande Bharat Express",
+          note: "Leaves Old Delhi at 4:00 pm, reaches Barnala at 8:20 pm (not on Wednesdays)",
+        },
+        {
+          no: "12455",
+          name: "Delhi Sarai Rohilla – Bikaner Express",
+          note: "Leaves Delhi Sarai Rohilla at 10:45 pm, reaches Barnala at 3:26 am",
+        },
       ],
       outro: "Please check current timings on IRCTC or NTES before booking.",
     },
@@ -131,5 +144,7 @@ export const wedding = {
 export const coupleNames = `${wedding.bride} & ${wedding.groom}`;
 
 export function formatDate(iso: string, opts: Intl.DateTimeFormatOptions) {
-  return new Intl.DateTimeFormat("en-IN", { timeZone: wedding.timezone, ...opts }).format(new Date(iso));
+  return new Intl.DateTimeFormat("en-IN", { timeZone: wedding.timezone, ...opts }).format(
+    new Date(iso),
+  );
 }

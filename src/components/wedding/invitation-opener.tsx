@@ -10,20 +10,23 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
   const [isOpening, setIsOpening] = useState(false);
   const timer = useRef<number | null>(null);
 
-  const startOpening = useCallback((animate = true) => {
-    if (isOpening) return;
+  const startOpening = useCallback(
+    (animate = true) => {
+      if (isOpening) return;
 
-    if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      onOpened();
-      return;
-    }
+      if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        onOpened();
+        return;
+      }
 
-    setIsOpening(true);
-    timer.current = window.setTimeout(() => {
-      timer.current = null;
-      onOpened();
-    }, 1250);
-  }, [isOpening, onOpened]);
+      setIsOpening(true);
+      timer.current = window.setTimeout(() => {
+        timer.current = null;
+        onOpened();
+      }, 1250);
+    },
+    [isOpening, onOpened],
+  );
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -36,7 +39,10 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") { startMusic(); startOpening(false); }
+      if (event.key === "Escape") {
+        startMusic();
+        startOpening(false);
+      }
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -51,7 +57,11 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
       aria-describedby="invitation-opening-description"
     >
       {(["left", "right"] as const).map((side) => (
-        <div key={side} className={`invitation-opening__panel invitation-opening__panel--${side}`} aria-hidden="true">
+        <div
+          key={side}
+          className={`invitation-opening__panel invitation-opening__panel--${side}`}
+          aria-hidden="true"
+        >
           <picture>
             <source media="(orientation: landscape)" srcSet={doorsLandscape} />
             <img src={doorsPortrait} alt="" fetchPriority="high" />
@@ -63,7 +73,11 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
           You are warmly invited to celebrate
         </p>
         <Monogram light className="invitation-opening__monogram" />
-        <h1 id="invitation-opening-title" className="invitation-opening__title" aria-label={coupleNames}>
+        <h1
+          id="invitation-opening-title"
+          className="invitation-opening__title"
+          aria-label={coupleNames}
+        >
           {coupleNames.split(" & ").map((name, index) => (
             <span key={name}>
               {index > 0 && <i>&amp;</i>}
@@ -75,7 +89,10 @@ export function InvitationOpener({ onOpened }: { onOpened: () => void }) {
         <button
           type="button"
           className="invitation-opening__open"
-          onClick={() => { startMusic(); startOpening(); }}
+          onClick={() => {
+            startMusic();
+            startOpening();
+          }}
           disabled={isOpening}
           aria-label={`Open ${coupleNames}'s wedding invitation`}
           autoFocus
